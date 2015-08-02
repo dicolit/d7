@@ -1,7 +1,7 @@
 <?php
 function about_us_page($node = FALSE) {
-  drupal_add_js(base_path().path_to_theme().'/js/about_us_page.js', array('type' => 'file', 'scope' => 'footer'));
-  drupal_add_css(base_path().path_to_theme().'/css/about_us_page.css');
+  drupal_add_js(path_to_theme().'/js/about_us_page.js', array('type' => 'file', 'scope' => 'footer'));
+  drupal_add_css(path_to_theme().'/css/about_us_page.css');
   $data = array();
   $about_us_form = drupal_get_form('about_us_form');
   $data['about_us_form'] = drupal_render($about_us_form);

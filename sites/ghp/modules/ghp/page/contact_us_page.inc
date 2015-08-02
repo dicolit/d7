@@ -1,7 +1,7 @@
 <?php
 function contact_us_page($node = FALSE) {
-  drupal_add_js(base_path().path_to_theme().'/js/contact_us_page.js', array('type' => 'file', 'scope' => 'footer'));
-  drupal_add_css(base_path().path_to_theme().'/css/contact_us_page.css');
+  drupal_add_js(path_to_theme().'/js/contact_us_page.js', array('type' => 'file', 'scope' => 'footer'));
+  drupal_add_css(path_to_theme().'/css/contact_us_page.css');
   $data = array();
   $contact_us_form = drupal_get_form('contact_us_form');
   $data['contact_us_form'] = drupal_render($contact_us_form);

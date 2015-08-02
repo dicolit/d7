@@ -1,7 +1,7 @@
 <?php
 function service_detail_page($node = FALSE) {
-  drupal_add_js(base_path().path_to_theme().'/js/service_detail_page.js', array('type' => 'file', 'scope' => 'footer'));
-  drupal_add_css(base_path().path_to_theme().'/css/service_detail_page.css');
+  drupal_add_js(path_to_theme().'/js/service_detail_page.js', array('type' => 'file', 'scope' => 'footer'));
+  drupal_add_css(path_to_theme().'/css/service_detail_page.css');
   $data = array();
   $service_detail_form = drupal_get_form('service_detail_form');
   $data['service_detail_form'] = drupal_render($service_detail_form);

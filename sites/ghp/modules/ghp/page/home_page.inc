@@ -1,7 +1,7 @@
 <?php
 function home_page($node = FALSE) {
-  drupal_add_js(base_path().path_to_theme().'/js/home_page.js', array('type' => 'file', 'scope' => 'footer'));
-  drupal_add_css(base_path().path_to_theme().'/css/home_page.css');
+  drupal_add_js(path_to_theme().'/js/home_page.js', array('type' => 'file', 'scope' => 'footer'));
+  drupal_add_css(path_to_theme().'/css/home_page.css');
   $data = array();
   $home_form = drupal_get_form('home_form');
   $data['home_form'] = drupal_render($home_form);

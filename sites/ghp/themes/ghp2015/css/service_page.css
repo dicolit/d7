@@ -1,1 +1,13 @@
 /* service_page */
+#page-title {
+  display: none;
+}
+
+.row.service-list {
+  padding: 10px 0;
+}
+
+.row.service-list .col-md-12 {
+  padding:10px 0px;
+  margin: 0px;
+}

@@ -6,7 +6,7 @@ version = VERSION
 core = 7.x
 
 ;stylesheets[all][] = styles/vendor.css
-;stylesheets[all][] = styles/main.css
+stylesheets[all][] = css/main.css
 
 ;scripts[] = scripts/vendor/modernizr.js
 ;scripts[] = js/jquery.min.js
