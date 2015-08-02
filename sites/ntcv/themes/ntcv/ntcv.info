@@ -1,0 +1,17 @@
+name = NTCV
+description = NTCV template.
+package = Core
+version = VERSION
+core = 7.x
+stylesheets[all][] = css/foundation.min.css
+;stylesheets[all][] = css/foundation-icons/foundation.min.css
+stylesheets[all][] = css/style.css
+
+scripts[] = js/vendor/modernizr.js
+
+
+; Information added by Drupal.org packaging script on 2014-08-06
+version = "7.31"
+project = "drupal"
+datestamp = "1407346433"
+

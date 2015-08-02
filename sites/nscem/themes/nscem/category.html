@@ -1,0 +1,634 @@
+<!doctype html>
+<html class="no-js" lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+		<title>Nestle</title>
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<link rel="stylesheet" href="styles/vendor.css">
+		<link rel="stylesheet" href="styles/main.css">
+		<script src="scripts/vendor/modernizr.js"></script>
+	</head>
+	<body class="not-logged-in">
+		<!--[if lt IE 10]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+		
+		<header class="container-fluid clearfix">
+			<h1><a href="javascript:void(0);" title="Dear Nestlé">Dear Nestlé</a></h1>
+			<nav>
+				<ul class="list-unstyled" id="main-nav">
+					<li><a href="javascript:void(0);">Home</a></li>
+					<li><a href="javascript:void(0);">Cook</a></li>
+					<li><a href="javascript:void(0);">Read</a></li>
+					<li><a href="javascript:void(0);">Move</a></li>
+					<li><a href="javascript:void(0);">Relax</a></li>
+				</ul>
+			</nav>
+			<div id="search-box">
+				<input type="text">
+			</div>
+			<div class="header--top-links clearfix">
+				<div class="top-links--user-info clearfix">
+					<a href="javascript:void(0);" id="user-info--search"></a>
+					<a href="#snackbox" id="user-info--snackbox" title="Snack Box"></a>
+					<a href="#point" id="user-info--point"><span>0</span></a>
+					<a href="#menu" id="user-info--menu"></a>
+					<div class="drop-down-menu">
+						<div id="snackbox" class="drop-down-menu-inner">
+							<p>Earn points when you share and participate in challenges. Let’s get started!</p>
+							<div class="menu--user-actions menu--user-actions__not-logged-user">
+								<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a>
+								<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+							</div>
+							<p>Earn <strong>1000 points</strong> by signing up for the first time. </p>
+						</div>
+						<div id="point" class="drop-down-menu-inner">
+							<p>View your points here. Sign up now to start earning points. The more active you are, the more points you'll earn!</p>
+							<div class="menu--user-actions menu--user-actions__not-logged-user">
+								<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a>
+								<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+							</div>
+							<p>Earn <strong>1000 points</strong> by signing up for the first time. </p>
+						</div>
+					</div>
+				</div>
+				<div class="toplinks--user-actions">
+					<a href="javascript:void(0);" title="Sign Up" id="user-actions--signup">Sign Up</a>
+					<a href="javascript:void(0);" title="Log In" id="user-actions--login">Log In</a>
+				</div>
+			</div>
+			<div class="mobile-menu">
+				<div id="mobile-menu" class="mobile-menu-inner">
+					<div class="menu--user-actions menu--user-actions__not-logged-user">
+						<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a>
+						<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+					</div>
+					<div class="menu--user-actions menu--user-actions__logged-user">
+						<div class="logged-user--detail">
+							<ul class="list-unstyled">
+								<li><a href="javascript:void(0);">My Account</a></li>
+								<li><a href="javascript:void(0);">My Rewards</a></li>
+								<li><a href="javascript:void(0);">My Scoreboard</a></li>
+								<li><a href="javascript:void(0);">Sign Out</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="menu--mobile-nav">
+						<ul>
+							<li><a href="javascript:void(0);">Home</a></li>
+							<li><a href="javascript:void(0);">Cook</a></li>
+							<li><a href="javascript:void(0);">Read</a></li>
+							<li><a href="javascript:void(0);">Move</a></li>
+							<li><a href="javascript:void(0);">Relax</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div id="mobile-snackbox" class="mobile-menu-inner">
+					<p>Earn points when you share and participate in challenges. Let’s get started!</p>
+					<div class="menu--user-actions menu--user-actions__not-logged-user">
+						<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a> 
+						<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+					</div>
+					<p>Earn <strong>1000 points</strong> by signing up for the first time. </p>
+				</div>
+
+				<div id="mobile-point" class="mobile-menu-inner">
+					<p>View your points here. Sign up now to start earning points. The more active you are, the more points you'll earn!</p>
+					<div class="menu--user-actions menu--user-actions__not-logged-user">
+						<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a>
+						<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+					</div>
+					<p>Earn <strong>1000 points</strong> by signing up for the first time. </p>
+				</div>
+
+				<div class="menu--mobile-social">
+					<p>Share this</p>
+					<p>
+						<a href="javascript:void(0)" class="mobile-social-1"></a>
+						<a href="javascript:void(0)" class="mobile-social-2"></a>
+						<a href="javascript:void(0)" class="mobile-social-3"></a>
+						<a href="javascript:void(0)" class="mobile-social-4"></a>
+						<a href="javascript:void(0)" class="mobile-social-5"></a>
+					</p>
+				</div>
+			</div>			
+		</header>
+
+		<main id="category-page">
+			<div class="category-heading">
+				<h2>Cook</h2>
+			</div>
+			<div class="category-filters clearfix">
+				<div class="category-filters-top clearfix">
+					<div class="cat-filters-menu cat-filters-menu__filters">
+						<a href="javascript:void(0);">Filters</a>
+					</div>
+					<div class="cat-filters-menu cat-filters-menu__sort">
+						<span>Sort by</span>
+						<div class="sort-dropdown" id="sort-dropdown">
+							<span>Latest</span>
+							<ul class="list-unstyled">
+								<li><a href="javascript:void(0);">Latest</a></li>
+								<li><a href="javascript:void(0);">Oldest</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="cat-filters-menu__sort--dropdown">
+					<form action="" method="post" class="cat-filters-form clearfix">
+						<legend>Filters By</legend>
+						<input type="reset" value="Reset All">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="filter-keywords">Keywords</label>
+								<input type="text" id="filter-keywords" class="form-control" placeholder="Type in your keywords">
+							</div>
+
+							<div class="form-group">
+								<label for="filter-occasion">Occasion</label>
+								<select name="filter-occasion" id="filter-occasion" class="form-control">
+									<option value="">Select your occasion</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="filter-difficulty">Difficulty</label>
+								<div class="stars">
+									<input type="radio" name="filter-diff" class="filter-diff-1" id="filter-diff-1" value="1" />
+									<label class="filter-diff-1" for="filter-diff-1">1</label>
+
+									<input type="radio" name="filter-diff" class="filter-diff-2" id="filter-diff-2" value="2"/>
+									<label class="filter-diff-2" for="filter-diff-2">2</label>
+
+									<input type="radio" name="filter-diff" class="filter-diff-3" id="filter-diff-3" value="3"/>
+									<label class="filter-diff-3" for="filter-diff-3">3</label>
+
+									<input type="radio" name="filter-diff" class="filter-diff-4" id="filter-diff-4" value="4"/>
+									<label class="filter-diff-4" for="filter-diff-4">4</label>
+
+									<input type="radio" name="filter-diff" class="filter-diff-5" id="filter-diff-5" value="5"/>
+									<label class="filter-diff-5" for="filter-diff-5">5</label>
+									<span></span>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-3">
+							<label for="filter-main-ingredients" class="cat-filters-form--heading">Main Ingredients</label>
+							<p class="checkbox style-1">
+								<label for="filter-mi-fruit">
+								<input type="checkbox" id="filter-mi-fruit"><span class="icon"></span>Fruit</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-vegetables">
+								<input type="checkbox" id="filter-mi-vegetables"><span class="icon"></span>Vegetables</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-meat">
+								<input type="checkbox" id="filter-mi-meat"><span class="icon"></span>Meat</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-legumes-bean">
+								<input type="checkbox" id="filter-mi-legumes-bean"><span class="icon"></span>Legumes &amp; Beans</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-dairy">
+								<input type="checkbox" id="filter-mi-dairy"><span class="icon"></span>Dairy</label>
+								</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-graines">
+								<input type="checkbox" id="filter-mi-graines"><span class="icon"></span>Graines</label></p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-rice">
+								<input type="checkbox" id="filter-mi-rice"><span class="icon"></span>Rice</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-seafood">
+								<input type="checkbox" id="filter-mi-seafood"><span class="icon"></span>Seafood</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-noddle-pasta">
+								<input type="checkbox" id="filter-mi-noddle-pasta"><span class="icon"></span>Noodle &amp; Pasta</label>
+							</p>
+						</div>
+
+						<div class="col-sm-3">
+							<label for="filter-main-nestle-brands" class="cat-filters-form--heading"><span class="icon"></span>Nestle Brands</label>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nestle-junior-club">
+								<input type="checkbox" id="filter-mi-nestle-junior-club"><span class="icon"></span>Nestle Junior Club</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nespray">
+								<input type="checkbox" id="filter-mi-nespray"><span class="icon"></span>Nespray</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nestle-low-fat-milk">
+								<input type="checkbox" id="filter-mi-nestle-low-fat-milk"><span class="icon"></span>Nestle Low Fat Milk</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nestle-omega-plus">
+								<input type="checkbox" id="filter-mi-nestle-omega-plus"><span class="icon"></span>Nestle Omega Plus</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nestle-breakfast">
+								<input type="checkbox" id="filter-mi-nestle-breakfast"><span class="icon"></span>Nestle Breakfast Cereal</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nestum">
+								<input type="checkbox" id="filter-mi-nestum"><span class="icon"></span>NESTUM</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-coffee-made">
+								<input type="checkbox" id="filter-mi-coffee-made"><span class="icon"></span>Coffee Made</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-milo">
+								<input type="checkbox" id="filter-mi-milo"><span class="icon"></span>MILO</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nescafe">
+								<input type="checkbox" id="filter-mi-nescafe"><span class="icon"></span>NESCAFE</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nescage-dolce-gusto">
+								<input type="checkbox" id="filter-mi-nescage-dolce-gusto"><span class="icon"></span>Nescage Dolce Gusto</label>
+							</p>
+						</div>
+
+						<div class="col-sm-3">
+							<label for="filter-main-ingredients" class="cat-filters-form--heading cat-filters-form--heading--empty">&nbsp;</label>
+							<p class="checkbox style-1">
+								<label for="filter-mi-maggi">
+								<input type="checkbox" id="filter-mi-maggi"><span class="icon"></span>MAGGI</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nestle-bliss">
+								<input type="checkbox" id="filter-mi-nestle-bliss"><span class="icon"></span>Nestle Bliss</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nestle-ice-cream">
+								<input type="checkbox" id="filter-mi-nestle-ice-cream"><span class="icon"></span>Nestle Ice Cream</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nestle-kitkat">
+								<input type="checkbox" id="filter-mi-nestle-kitkat"><span class="icon"></span>Nestle Kit Kat</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-purina-petcare-alpo">
+								<input type="checkbox" id="filter-mi-purina-petcare-alpo"><span class="icon"></span>PURINA Petcare ALPO</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-purina-petcare-friskies">
+								<input type="checkbox" id="filter-mi-purina-petcare-friskies"><span class="icon"></span>PURINA Petcare FRISKIES</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nestle-nutrien">
+								<input type="checkbox" id="filter-mi-nestle-nutrien"><span class="icon"></span>Nestle NUTIEN</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nestle-sjora">
+								<input type="checkbox" id="filter-mi-nestle-sjora"><span class="icon"></span>Nestle SJORA</label>
+							</p>
+							<p class="checkbox style-1">
+								<label for="filter-mi-nestle-yogurt">
+								<input type="checkbox" id="filter-mi-nestle-yogurt"><span class="icon"></span>Nestle Yogurt</label>
+							</p>
+						</div>
+
+						<div class="col-sm-12 cat-filters-form--submit-button">
+							<div class="col-sm-3 col-xs-12 pull-right">
+								<button type="submit">Apply Filters</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<section class="main container">
+				<div class="listing clearfix">
+					<div class="listing--results">
+						<div class="listing--list">
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Cook</h2>
+									<img src="images/global/thumbnail-default-article.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10-Chicken Breasts with Balsamic Vinegar and Garlic</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Cook</h2>
+									<img src="images/global/thumbnail-default-article.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10-Chicken Breasts with Balsamic Vinegar and Garlic</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Cook</h2>
+									<img src="images/global/thumbnail-default-article.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10-Chicken Breasts with Balsamic Vinegar and Garlic</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Read</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10 Tips for stress-free life</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--2">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox active"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2 class="has-video">Move <span class="icon-video"></span></h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10-minute morning yoga</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--3">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox active"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Relax</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h3>Stress Management: Practising Yoga to Relax</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--4">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2 class="has-video">Move <span class="icon-video"></span></h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h3>10-minute morning yoga</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--5">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+							
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Cook</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10-Chicken Breasts with Balsamic Vinegar and Garlic</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Read</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10 Tips for stress-free life</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox active"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2 class="has-video">Move <span class="icon-video"></span></h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10-minute morning yoga</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox active"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Relax</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h3>Stress Management: Practising Yoga to Relax</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2 class="has-video">Move <span class="icon-video"></span></h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h3>10-minute morning yoga</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="listing--load-more">
+							<div class="load-more--icon"></div>
+						</div>
+					</div>
+				</div>
+				<!-- <a href="javascript:void(0);" id="btn-backtop">Back To Top</a> -->
+			</section>
+		</main>
+
+		<footer class="clearfix">
+			<div class="footer-links">
+				<div id="socials">
+					<a href="javascript:void(0);" id="social-1" title="Connect with us on Facebook">Facebook</a>
+					<a href="javascript:void(0);" id="social-2" title="Connect with us on Twitter">Twitter</a>
+					<a href="javascript:void(0);" id="social-3" title="Connect with us on Instagram">Instagram</a>
+					<a href="javascript:void(0);" id="social-4" title="Connect with us on Pinterest">Pinterest</a>
+				</div>
+				<nav id="sub-nav">
+					<ul class="list-unstyled">
+						<li><a href="javascript:void(0);">Our Brands</a></li>
+						<li><a href="javascript:void(0);">Contact Us</a></li>
+						<li><a href="javascript:void(0);">Terms &amp; Conditions</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="copyright">
+				<div class="footer-logo"><img src="images/logo-footer.jpg" alt=""></div>
+				<div class="cp-text">
+					<p>Copyright 2015 <sup>&copy;</sup> Nestlé Products Snd Bhd (45229-H).</p>
+					<p>All Right Reserved</p>
+				</div>
+			</div>
+		</footer>
+		<script src="scripts/vendor.js"></script>
+		<script src="scripts/plugins.js"></script>
+		<script src="scripts/main.js"></script>
+		<script src="scripts/category.js"></script>
+	</body>
+</html>

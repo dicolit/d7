@@ -1,0 +1,19 @@
+name = NSCEM
+description = NSCEM theme.
+
+package = OgilvyOne
+version = VERSION
+core = 7.x
+
+stylesheets[all][] = styles/vendor.css
+stylesheets[all][] = styles/main.css
+
+scripts[] = scripts/vendor/modernizr.js
+scripts[] = js/jquery.min.js
+scripts[] = scripts/vendor.js
+scripts[] = scripts/plugins.js
+scripts[] = scripts/main.js
+
+regions[header] = Header
+regions[content] = Content
+regions[footer] = Footer

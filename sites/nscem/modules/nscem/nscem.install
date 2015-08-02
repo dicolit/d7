@@ -1,0 +1,12 @@
+<?php
+/**
+ * Implements hook_install()
+ */
+function nscem_install() {
+  // disable search module
+  db_update('system')
+  ->fields(array('status' => 0))
+  ->condition('name', 'search', '=')
+  ->execute();
+  drupal_flush_all_caches();
+}

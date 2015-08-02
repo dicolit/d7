@@ -1,0 +1,99 @@
+#header {
+  background-color: #333;
+  background-image: url('../img/bg-header.jpg');
+  border-bottom:4px solid #008CBA;
+}
+
+#footer {
+  background-color: #333;
+  color:#eee;
+  padding-top:10px;
+  background-image: url('../img/bg-header.jpg');
+  border-top:4px solid #008CBA;
+}
+
+#footer a {
+  color:#bbb;
+}
+
+#footer a.active {
+  color:#ccc;
+}
+#header .top-bar {
+  background-color: transparent;
+}
+
+.top-bar-section ul li>a {
+  text-transform: uppercase;
+}
+.main-content {
+  padding-top:18px;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background-image: url('../img/bg.jpg');
+}
+
+body {
+  background-color: #666;
+  background-image: url('../img/bg.jpg');
+}
+
+.middle-content {
+  background-color: #fff;
+}
+
+.row.node-item {
+  border-bottom: 1px solid #eee;
+  padding:15px 0px 15px 0px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Times New Roman';
+}
+
+.block-title,.title.comment-form {
+  border-left:4px solid #008CBA;
+  background-color: #eee;
+  padding-left: 10px;
+  background-image: url('../img/bg-block-title.gif');
+  color:#fff !important;
+}
+
+.search-block .form-wrapper {
+  padding:0;
+  margin:0;
+}
+.search-block .form-wrapper input[type=submit] {
+  margin:0;
+}
+
+
+table {
+  width: 100%;
+}
+
+.region-sidebar-first,.region-sidebar-second {
+  padding-top:20px;
+}
+
+#page-title {
+  /*border-left-color: #008CBA;*/
+}
+
+.button {
+  margin-right: 10px;
+}
+
+#user-login-form .form-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+#user-login-form .form-wrapper .form-submit {
+  margin: 0;
+}
+
+.node .field-type-image {
+  text-align: center;
+}

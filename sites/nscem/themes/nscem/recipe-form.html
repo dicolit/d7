@@ -1,0 +1,498 @@
+<!doctype html>
+<html class="no-js" lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+		<title>Nestle</title>
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<link rel="stylesheet" href="styles/vendor.css">
+		<link rel="stylesheet" href="styles/main.css">
+		<script src="scripts/vendor/modernizr.js"></script>
+	</head>
+	<body class="not-logged-in">
+		<!--[if lt IE 10]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+		
+		<header class="container-fluid clearfix">
+			<h1><a href="javascript:void(0);" title="Dear Nestlé">Dear Nestlé</a></h1>
+			<nav>
+				<ul class="list-unstyled" id="main-nav">
+					<li><a href="javascript:void(0);">Home</a></li>
+					<li><a href="javascript:void(0);">Cook</a></li>
+					<li><a href="javascript:void(0);">Read</a></li>
+					<li><a href="javascript:void(0);">Move</a></li>
+					<li><a href="javascript:void(0);">Relax</a></li>
+				</ul>
+			</nav>
+
+			<div id="search-box">
+				<input type="text">
+			</div>
+			<div class="header--top-links clearfix">
+				<div class="top-links--user-info clearfix">
+					<a href="javascript:void(0);" id="user-info--search"></a>
+					<a href="#snackbox" id="user-info--snackbox" title="Snack Box"></a>
+					<a href="#point" id="user-info--point"><span>0</span></a>
+					<a href="#menu" id="user-info--menu"></a>
+					<div class="drop-down-menu">
+						<div id="snackbox" class="drop-down-menu-inner">
+							<p>Earn points when you share and participate in challenges. Let’s get started!</p>
+							<div class="menu--user-actions menu--user-actions__not-logged-user">
+								<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a>
+								<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+							</div>
+							<p>Earn <strong>1000 points</strong> by signing up for the first time. </p>
+						</div>
+						<div id="point" class="drop-down-menu-inner">
+							<p>View your points here. Sign up now to start earning points. The more active you are, the more points you'll earn!</p>
+							<div class="menu--user-actions menu--user-actions__not-logged-user">
+								<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a>
+								<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+							</div>
+							<p>Earn <strong>1000 points</strong> by signing up for the first time. </p>
+						</div>
+					</div>
+				</div>
+				<div class="toplinks--user-actions">
+					<a href="javascript:void(0);" title="Sign Up" id="user-actions--signup">Sign Up</a>
+					<a href="javascript:void(0);" title="Log In" id="user-actions--login">Log In</a>
+				</div>
+			</div>
+			<div class="mobile-menu">
+				<div id="mobile-menu" class="mobile-menu-inner">
+					<div class="menu--user-actions menu--user-actions__not-logged-user">
+						<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a>
+						<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+					</div>
+					<div class="menu--user-actions menu--user-actions__logged-user">
+						<div class="logged-user--detail">
+							<ul class="list-unstyled">
+								<li><a href="javascript:void(0);">My Account</a></li>
+								<li><a href="javascript:void(0);">My Rewards</a></li>
+								<li><a href="javascript:void(0);">My Scoreboard</a></li>
+								<li><a href="javascript:void(0);">Sign Out</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="menu--mobile-nav">
+						<ul>
+							<li><a href="javascript:void(0);">Home</a></li>
+							<li><a href="javascript:void(0);">Cook</a></li>
+							<li><a href="javascript:void(0);">Read</a></li>
+							<li><a href="javascript:void(0);">Move</a></li>
+							<li><a href="javascript:void(0);">Relax</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div id="mobile-snackbox" class="mobile-menu-inner">
+					<p>Earn points when you share and participate in challenges. Let’s get started!</p>
+					<div class="menu--user-actions menu--user-actions__not-logged-user">
+						<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a> 
+						<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+					</div>
+					<p>Earn <strong>1000 points</strong> by signing up for the first time. </p>
+				</div>
+
+				<div id="mobile-point" class="mobile-menu-inner">
+					<p>View your points here. Sign up now to start earning points. The more active you are, the more points you'll earn!</p>
+					<div class="menu--user-actions menu--user-actions__not-logged-user">
+						<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a>
+						<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+					</div>
+					<p>Earn <strong>1000 points</strong> by signing up for the first time. </p>
+				</div>
+
+				<div class="menu--mobile-social">
+					<p>Share this</p>
+					<p>
+						<a href="javascript:void(0)" class="mobile-social-1"></a>
+						<a href="javascript:void(0)" class="mobile-social-2"></a>
+						<a href="javascript:void(0)" class="mobile-social-3"></a>
+						<a href="javascript:void(0)" class="mobile-social-4"></a>
+						<a href="javascript:void(0)" class="mobile-social-5"></a>
+					</p>
+				</div>
+			</div>			
+		</header>
+
+		<main class="recipe-page recipe-create">
+			<div class="breadcrumb-container clearfix">
+				<ol class="breadcrumb">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Cook</a></li>
+					<li class="active">Dinner</li>
+				</ol>
+			</div>
+			<section class="main container">
+				<div class="row">
+					<div class="col-sm-3 col-sm-push-9">
+						<div class="aside recipe-submit">
+							<h3 class="underline">Create Recipe</h3>
+							<div class="info clearfix">
+								<p>Your recipe will be private, only you can access and view it. If you want to publish it on the website, please use “Share with Nestle” feature. </p>	
+								<button class="btn btn-green hidden-xs">Submit</button>
+								<p>By submitting, you accept the Terms &amp; Conditions</p>
+							</div>
+						</div>	
+					</div>
+					<div class="col-sm-9 col-sm-pull-3">
+						<div class="row">
+							<div class="col-sm-5">
+								<div class="recipe-photo">
+									<h3 class="no-underline">Recipe Photos <span class='icon-tip'></span></h3>
+									<div class="photo-wrapper">
+										<img src="images/dummy/recipe-create-upload.jpg"/>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-7">
+								<div class="basic-info">
+									<h3>Basic Info</h3>
+									<div class="basic-form row">
+										<div class="form-row recipe-name col-sm-12">
+											<label>Recipe Name</label>
+											<input class="big" type="text"/>
+										</div>
+										<div class="form-row occasion col-sm-6">
+											<label>Occasion</label>
+											<div class="select-wrapper" id="occasion-dropdown">
+												<select>
+													<option>Please select</option>
+													<option>Value 1</option>
+													<option>Value 2</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-row difficulty-level col-sm-6">
+											<label>Difficulty level</label>
+											<div class="difficulty-content">
+												<div class="stars">
+													<input type="radio" name="filter-diff" class="filter-diff-1" id="filter-diff-1" value="1">
+													<label class="filter-diff-1" for="filter-diff-1">1</label>
+
+													<input type="radio" name="filter-diff" class="filter-diff-2" id="filter-diff-2" value="2">
+													<label class="filter-diff-2" for="filter-diff-2">2</label>
+
+													<input type="radio" name="filter-diff" class="filter-diff-3" id="filter-diff-3" value="3">
+													<label class="filter-diff-3" for="filter-diff-3">3</label>
+
+													<input type="radio" name="filter-diff" class="filter-diff-4" id="filter-diff-4" value="4">
+													<label class="filter-diff-4" for="filter-diff-4">4</label>
+
+													<input type="radio" name="filter-diff" class="filter-diff-5" id="filter-diff-5" value="5">
+													<label class="filter-diff-5" for="filter-diff-5">5</label>
+													<span></span>
+												</div>	
+											</div>
+										</div>
+										<div class="clearfix hidden-xs"></div>
+										<div class="form-row preparation-time col-sm-6 col-xs-6">
+											<label>Preparation Time</label>
+											<div class="input-wrapper">
+												<input class="big" type="text"/>
+												<span class="unit">min</span>
+											</div>
+										</div>
+
+										<div class="form-row serves col-sm-6 col-xs-6">
+											<label>Serves</label>
+											<div class="input-wrapper">
+												<input class="big" type="text"/>
+												<span class="unit">persons</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-5">
+								<div class="ingredient">
+									<h3 class="underline">Ingredients <span class='icon-tip'></span></h3>
+									<div class="ingredient-wrapper">
+										<div class="ingredient-item">
+											<div class="ingredient-visual">
+												<p class="name">1 tablespoon Lemon Zest</p>
+												<span class="edit-icon"></span>
+											</div>
+											<div class="ingredient-edit">
+												<p class="title">Edit Ingredient</p>
+												<div class="edit-row">
+													<div class="qty">
+														<label>Quantity</label>
+														<input class="big" type="text"/>
+													</div>
+													<div class="fractions">
+														<label>Fractions</label>
+														<div class="select-wrapper fraction-select">
+															<select>							
+																<option>Val 1</option>
+																<option>Val 2</option>
+															</select>
+														</div>
+													</div>
+													<div class="unit">
+														<label>Unit</label>
+														<div class="select-wrapper unit-select">
+															<select>							
+																<option>tablesppoon</option>
+															</select>
+														</div>
+													</div>
+												</div>
+												<div class="edit-row">
+													<label>Ingredient</label>
+													<input class="big" type="text"/>
+												</div>
+												<div class="edit-action">
+													<button class="cancel btn btn-green">Cancel</button>
+													<button class="save btn btn-green">Save</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<button class="ingredient-add btn btn-green">Add new ingredient</button>
+								</div>	
+							</div>
+							<div class="col-sm-7">
+								<div class="directions">
+									<h3 class="underline">Directions <span class='icon-tip'></span></h3>
+									<div class="directions-wrapper">
+										<div class="step-item">
+											<div class="step-item-wrapper">
+												<div class="info">
+													<span class="counter">1</span>
+													<p>Marinate chicken drumettes with MAGGI Chicken Stock Cube, lemon zest, yogurt, garlic, mixed herbs, lemon juice, salt and 1 tablespoon of honey for 2 hours.</p>
+												</div>
+												<div class="step-action">
+													<a class="delete-btn" href="javascript:void(0);"></a>
+													<a class="move-btn" href="javascript:void(0);"></a>
+												</div>
+											</div>
+										</div>
+										<div class="step-item">
+											<div class="step-item-wrapper">
+												<div class="info">
+													<span class="counter">20</span>
+													
+												</div>
+												<div class="step-action">
+													<a class="delete-btn" href="javascript:void(0);"></a>
+													<a class="move-btn" href="javascript:void(0);"></a>
+												</div>
+											</div>											
+										</div>
+									</div>
+									<button class="step-add btn btn-green">Add new step</button>
+								</div>	
+							</div>
+						</div>						
+					</div>
+					<div class="submit-bottom visible-xs-block">
+						<button class="btn btn-green">Submit</button>
+						<p>By submitting, you accept the Terms & Conditions</p>
+					</div>
+				</div>
+				<!-- <a href="javascript:void(0);" id="btn-backtop">Back To Top</a> -->
+			</section>
+		</main>
+
+		<footer class="clearfix">
+			<div class="footer-links">
+				<div id="socials">
+					<a href="javascript:void(0);" id="social-1" title="Connect with us on Facebook">Facebook</a>
+					<a href="javascript:void(0);" id="social-2" title="Connect with us on Twitter">Twitter</a>
+					<a href="javascript:void(0);" id="social-3" title="Connect with us on Instagram">Instagram</a>
+					<a href="javascript:void(0);" id="social-4" title="Connect with us on Pinterest">Pinterest</a>
+				</div>
+				<nav id="sub-nav">
+					<ul class="list-unstyled">
+						<li><a href="javascript:void(0);">Our Brands</a></li>
+						<li><a href="javascript:void(0);">Contact Us</a></li>
+						<li><a href="javascript:void(0);">Terms &amp; Conditions</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="copyright">
+				<div class="footer-logo"><img src="images/logo-footer.jpg" alt=""></div>
+				<div class="cp-text">
+					<p>Copyright 2015 <sup>&copy;</sup> Nestlé Products Snd Bhd (45229-H).</p>
+					<p>All Right Reserved</p>
+				</div>
+			</div>
+		</footer>
+		
+		<!-- video popup -->
+		<div class="overlay overlay-hugeinc video-overlay">
+			<button type="button" class="overlay-close">Close</button>
+			<div class="overlay-perspective">
+				<div class="overlay-content">
+					<div class="video-wrapper">
+						<iframe width="420" height="345" src="http://www.youtube.com/embed/aBnGzklDHnM"></iframe>
+					</div>
+					<ol>
+						<li>Marinate chicken drumettes with <a href="javascript:void(0);">MAGGI Chicken Stock Cube</a>, lemon zest, yogurt, garlic, mixed herbs, lemon juice, salt and 1 tablespoon of honey for 2 hours.</li>
+						<li>Pre-heat oven to 200 C. Line a baking tray with aluminium foil..</li>
+						<li>Place chicken drumettes on the foil, brush with remaining honey, olive oil and bake for 20 minutes until cooked and lightly browned.</li>
+						<li>Serve warm with lemon wedges and mayonnaise if desired..</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<!-- end video popup -->
+		<!-- rate popup -->
+		<div class="overlay overlay-hugeinc rate-overlay">
+			<button type="button" class="overlay-close">Close</button>
+			<div class="overlay-perspective">
+				<div class="overlay-content">
+					<p class="title underline">Rate this recipe</p>
+					<div class="rate-wrapper">
+						<div class="stars"> 
+							<input type="radio" name="filter-diff" class="filter-diff-1" id="filter-diff-1" value="1" />
+							<label class="filter-diff-1" for="filter-diff-1">1</label>
+
+							<input type="radio" name="filter-diff" class="filter-diff-2" id="filter-diff-2" value="2"/>
+							<label class="filter-diff-2" for="filter-diff-2">2</label>
+
+							<input type="radio" name="filter-diff" class="filter-diff-3" id="filter-diff-3" value="3"/>
+							<label class="filter-diff-3" for="filter-diff-3">3</label>
+
+							<input type="radio" name="filter-diff" class="filter-diff-4" id="filter-diff-4" value="4"/>
+							<label class="filter-diff-4" for="filter-diff-4">4</label>
+
+							<input type="radio" name="filter-diff" class="filter-diff-5" id="filter-diff-5" value="5"/>
+							<label class="filter-diff-5" for="filter-diff-5">5</label>
+							<span></span>
+						</div>
+						<button class="btn btn-green">Rate</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end rate popup -->
+		<!-- point popup -->
+		<div class="overlay overlay-hugeinc point-overlay">
+			<button type="button" class="overlay-close">Close</button>
+			<div class="overlay-perspective">
+				<div class="overlay-content">
+					<div class="detail-info--point-breakdown">
+						<h5>Points Breakdown</h5>
+						<ul class="list-unstyled">
+							<li class="clearfix">
+								<div class="point">
+									200P
+								</div>
+								<div class="point-desc done">
+									Share this recipe to Facebook
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="point">
+									200P
+								</div>
+								<div class="point-desc done">
+									Add your comment
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="point">
+									200P
+								</div>
+								<div class="point-desc">
+									Email this recipe to friends
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="point">
+									100P
+								</div>
+								<div class="point-desc">
+									Share this recipe to Google+
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="point">
+									50P
+								</div>
+								<div class="point-desc">
+									Rate this recipe
+								</div>
+							</li>
+						</ul>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<!-- end point popup -->
+		<!-- email popup -->
+		<div class="overlay overlay-hugeinc email-overlay">
+			<button type="button" class="overlay-close">Close</button>
+			<div class="overlay-perspective">
+				<div class="overlay-content">
+					<p class="title">Email this recipe<strong>Baked Lemon Honey Yogurt Chicken Drumettes</strong></p>
+					<div class="form-wrapper">
+						<div class="form-row">
+							<label>Recipient</label>
+							<input id="recipient" type="text" class="short"/>
+							<button id="addRecipient" class="btn btn-green">Add</button>
+						</div>
+						<div class="form-row">
+							<label>Your name</label>
+							<input class="big" type="text"/>							
+						</div>
+						<div class="form-row">
+							<label>Your note (optional)</label>
+							<input class="big" type="text"/>							
+						</div>
+						<div class="button-wrapper">
+							<button class="btn btn-green">Cancel</button>
+							<button class="btn btn-green">Send</button>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<!-- end email popup -->
+		<!-- share popup -->
+		<div class="overlay overlay-hugeinc share-overlay">
+			<button type="button" class="overlay-close">Close</button>
+			<div class="overlay-perspective">
+				<div class="overlay-content">
+					<p class="title underline">Share this recipe<strong>Baked Lemon Honey Yogurt Chicken Drumettes</strong></p>
+					<div class="share-wrapper">	
+						<a href="javascript:void(0);" class="share-row">
+							<span class="icon facebook"></span>
+							<span class="title underline">Facebook</span>
+						</a>
+						<a href="javascript:void(0);" class="share-row">
+							<span class="icon twitter"></span>
+							<span class="title underline">Twitter</span>
+						</a>
+						<a href="javascript:void(0);" class="share-row">
+							<span class="icon instagram"></span>
+							<span class="title underline">Instagram</span>
+						</a>
+						<a href="javascript:void(0);" class="share-row">
+							<span class="icon pinterest"></span>
+							<span class="title underline">Pinterest</span>
+						</a>
+						<a href="javascript:void(0);" class="share-row">
+							<span class="icon mail"></span>
+							<span class="title underline">Email</span>
+						</a>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<!-- end share popup -->
+
+		<script src="scripts/vendor.js"></script>
+		<script src="scripts/plugins.js"></script>
+		<script src="scripts/main.js"></script>
+		<script src="scripts/recipe.js"></script>
+	</body>
+</html>

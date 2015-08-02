@@ -1,0 +1,724 @@
+<!doctype html>
+<html class="no-js" lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+		<title>Nestle</title>
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<link rel="stylesheet" href="styles/vendor.css">
+		<link rel="stylesheet" href="styles/main.css">
+		<script src="scripts/vendor/modernizr.js"></script>
+	</head>
+	<body class="not-logged-in">
+		<!--[if lt IE 10]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+		
+		<header class="container-fluid clearfix">
+			<h1><a href="javascript:void(0);" title="Dear Nestlé">Dear Nestlé</a></h1>
+			<nav>
+				<ul class="list-unstyled" id="main-nav">
+					<li><a href="javascript:void(0);">Home</a></li>
+					<li><a href="javascript:void(0);">Cook</a></li>
+					<li><a href="javascript:void(0);">Read</a></li>
+					<li><a href="javascript:void(0);">Move</a></li>
+					<li><a href="javascript:void(0);">Relax</a></li>
+				</ul>
+			</nav>
+			<div id="search-box">
+				<input type="text">
+			</div>
+			<div class="header--top-links clearfix">
+				<div class="top-links--user-info clearfix">
+					<a href="javascript:void(0);" id="user-info--search"></a>
+					<a href="#snackbox" id="user-info--snackbox" title="Snack Box"></a>
+					<a href="#point" id="user-info--point"><span>0</span></a>
+					<a href="#menu" id="user-info--menu"></a>
+					<div class="drop-down-menu">
+						<div id="snackbox" class="drop-down-menu-inner">
+							<p>Earn points when you share and participate in challenges. Let’s get started!</p>
+							<div class="menu--user-actions menu--user-actions__not-logged-user">
+								<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a>
+								<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+							</div>
+							<p>Earn <strong>1000 points</strong> by signing up for the first time. </p>
+						</div>
+						<div id="point" class="drop-down-menu-inner">
+							<p>View your points here. Sign up now to start earning points. The more active you are, the more points you'll earn!</p>
+							<div class="menu--user-actions menu--user-actions__not-logged-user">
+								<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a>
+								<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+							</div>
+							<p>Earn <strong>1000 points</strong> by signing up for the first time. </p>
+						</div>
+					</div>
+				</div>
+				<div class="toplinks--user-actions">
+					<a href="javascript:void(0);" title="Sign Up" id="user-actions--signup">Sign Up</a>
+					<a href="javascript:void(0);" title="Log In" id="user-actions--login">Log In</a>
+				</div>
+			</div>
+			<div class="mobile-menu">
+				<div id="mobile-menu" class="mobile-menu-inner">
+					<div class="menu--user-actions menu--user-actions__not-logged-user">
+						<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a>
+						<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+					</div>
+					<div class="menu--user-actions menu--user-actions__logged-user">
+						<div class="logged-user--detail">
+							<ul class="list-unstyled">
+								<li><a href="javascript:void(0);">My Account</a></li>
+								<li><a href="javascript:void(0);">My Rewards</a></li>
+								<li><a href="javascript:void(0);">My Scoreboard</a></li>
+								<li><a href="javascript:void(0);">Sign Out</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="menu--mobile-nav">
+						<ul>
+							<li><a href="javascript:void(0);">Home</a></li>
+							<li><a href="javascript:void(0);">Cook</a></li>
+							<li><a href="javascript:void(0);">Read</a></li>
+							<li><a href="javascript:void(0);">Move</a></li>
+							<li><a href="javascript:void(0);">Relax</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div id="mobile-snackbox" class="mobile-menu-inner">
+					<p>Earn points when you share and participate in challenges. Let’s get started!</p>
+					<div class="menu--user-actions menu--user-actions__not-logged-user">
+						<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a> 
+						<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+					</div>
+					<p>Earn <strong>1000 points</strong> by signing up for the first time. </p>
+				</div>
+
+				<div id="mobile-point" class="mobile-menu-inner">
+					<p>View your points here. Sign up now to start earning points. The more active you are, the more points you'll earn!</p>
+					<div class="menu--user-actions menu--user-actions__not-logged-user">
+						<a href="javascript:void(0);" title="Sign Up" class="menu-actions--signup">Sign Up</a>
+						<a href="javascript:void(0);" title="Log In" class="menu-actions--login">Log In</a>
+					</div>
+					<p>Earn <strong>1000 points</strong> by signing up for the first time. </p>
+				</div>
+
+				<div class="menu--mobile-social">
+					<p>Share this</p>
+					<p>
+						<a href="javascript:void(0)" class="mobile-social-1"></a>
+						<a href="javascript:void(0)" class="mobile-social-2"></a>
+						<a href="javascript:void(0)" class="mobile-social-3"></a>
+						<a href="javascript:void(0)" class="mobile-social-4"></a>
+						<a href="javascript:void(0)" class="mobile-social-5"></a>
+					</p>
+				</div>
+			</div>			
+		</header>
+
+		<main id="home-page">
+			<div class="welcome-note">Welcome to Dear Nestlé</div>
+			<section id="hero-banner">
+				<div class="gallery">
+					<div class="gallery-cell">
+						<img src="images/home/hero-slide-1.jpg" alt="">
+					</div>
+					<div class="gallery-cell">
+						<img src="images/home/hero-slide-1.jpg" alt="">
+					</div>
+					<div class="gallery-cell">
+						<img src="images/home/hero-slide-1.jpg" alt="">
+					</div>
+				</div>
+			</section>
+			<section class="main container">
+				<div class="filters">
+					<dl>
+						<dt>Filter</dt>
+						<dd><a href="javascript:void(0);" class="active">All</a></dd>
+						<dd><a href="javascript:void(0);">Cook</a></dd>
+						<dd><a href="javascript:void(0);">Read</a></dd>
+						<dd><a href="javascript:void(0);">Move</a></dd>
+						<dd><a href="javascript:void(0);">Relax</a></dd>
+					</dl>
+				</div>
+				<div class="listing clearfix">
+					<div class="listing--results">
+						<div class="listing--list js-isotope2">
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Cook</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10-Chicken Breasts with Balsamic Vinegar and Garlic</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Cook</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10-Chicken Breasts with Balsamic Vinegar and Garlic</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Cook</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10-Chicken Breasts with Balsamic Vinegar and Garlic</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Read</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10 Tips for stress-free life</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--2">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox active"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2 class="has-video">Move <span class="icon-video"></span></h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10-minute morning yoga</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--3">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox active"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Relax</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h3>Stress Management: Practising Yoga to Relax</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--4">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2 class="has-video">Move <span class="icon-video"></span></h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h3>10-minute morning yoga</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--5">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+							
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Cook</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10-Chicken Breasts with Balsamic Vinegar and Garlic</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Read</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10 Tips for stress-free life</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox active"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2 class="has-video">Move <span class="icon-video"></span></h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h4>Recommended</h4>
+											<h3>10-minute morning yoga</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox active"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2>Relax</h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h3>Stress Management: Practising Yoga to Relax</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="list-item-container col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="list-item">
+									<h2 class="has-video">Move <span class="icon-video"></span></h2>
+									<img src="images/dummy/list1.jpg" alt="Chicken Breasts with Balsamic Vinegar and Garlic">
+									<div class="list-item--info">
+										<a href="javascript:void(0);">
+											<h3>10-minute morning yoga</h3>
+										</a>
+										<div class="rating"> 
+											<div class="rating--stars stars--1">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+											</div>
+											<span>(20)</span>
+										</div>
+										<a href="javascript:void(0);" class="add-to-snackbox" title="Add to your snack box"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="listing--load-more">
+							<div class="load-more--icon"></div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="clearfix">
+			<div class="footer-links">
+				<div id="socials">
+					<a href="javascript:void(0);" id="social-1" title="Connect with us on Facebook">Facebook</a>
+					<a href="javascript:void(0);" id="social-2" title="Connect with us on Twitter">Twitter</a>
+					<a href="javascript:void(0);" id="social-3" title="Connect with us on Instagram">Instagram</a>
+					<a href="javascript:void(0);" id="social-4" title="Connect with us on Pinterest">Pinterest</a>
+				</div>
+				<nav id="sub-nav">
+					<ul class="list-unstyled">
+						<li><a href="javascript:void(0);">Our Brands</a></li>
+						<li><a href="javascript:void(0);">Contact Us</a></li>
+						<li><a href="javascript:void(0);">Terms &amp; Conditions</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="copyright">
+				<div class="footer-logo"><img src="images/logo-footer.jpg" alt=""></div>
+				<div class="cp-text">
+					<p>Copyright 2015 <sup>&copy;</sup> Nestlé Products Snd Bhd (45229-H).</p>
+					<p>All Right Reserved</p>
+				</div>
+			</div>
+			<a id="btn-backtop" href="javascript:void(0);"></a>
+		</footer>
+
+		<!-- Welcome Modal -->
+		<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		       	<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>  
+				<div class="modal-body">
+					<div class="contain">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="img-wrapper">
+									<img src="images/modal/welcome-modal-img.png"/>
+								</div>
+								<div class="txt-wrapper">
+									<h1 class="title">Welcome to Dear Nestle</h1>
+									<p class="desc">For mothers on the go, this website is packed with information and tips on healthy family living. Enjoy recipes, suggested workouts and advice on family bonding and leisure activities. </p>
+									<p class="desc">We’ve also put together a selection of articles as well as challenges to keep you motivated.  Earn points along the way to keep track of your progress and to redeem products from participating merchants, soon!</p>
+								</div>
+								<div class="modal-action">
+									<div class="btn-wrapper">
+										<a class="login-btn btn btn-green" href="javascript:void(0);">Log In</a>
+										<a class="signup-btn btn btn-green" href="javascript:void(0);">Sign Up</a>
+									</div>
+									<a class="later-btn" href="javascript:void(0);">Later</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		     
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Delete private Recipe Modal -->
+		<div class="modal fade" id="deleteRecipeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		       	<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>  
+				<div class="modal-body">
+					<div class="contain">
+						<div class="row">
+							<div class="col-sm-12">
+								
+								<div class="txt-wrapper">
+									<p class="quest desc underline">Delete this recipe?</p>
+									<h1 class="title">Baked Lemon Honey Yogurt Chicken Drumettes</h1>
+									<p class="note desc"><strong>Please note: </strong>Once you delete this recipe, you can’t get it back later.</p>
+								</div>
+								<div class="modal-action">
+									<div class="btn-wrapper">
+										<a class="cancel-btn btn btn-green-border" href="javascript:void(0);">Cancel</a>
+										<a class="save-btn btn btn-green" href="javascript:void(0);">Save</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		     
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Forgot Password Modal -->
+		<div class="modal fade" id="forgotPassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		       	<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>  
+				<div class="modal-body">
+					<div class="contain">
+						<div class="row">
+							<div class="col-sm-12">							
+								<div class="txt-wrapper">
+									<p class="title underline">Forgot Password</p>	
+									<p class="desc">
+										An email has been sent to <a href="javascript:void(0);">amanda.wong@gmail.com</a> with password reset instructions. Please click on the link in the email to reset your password.	
+									</p>
+								</div>
+								<div class="modal-action">
+									<div class="btn-wrapper">
+										<a class="return-login-btn btn btn-green" href="javascript:void(0);">Return to log in page</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		     
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Website Tour Modal -->
+		<div class="modal fade" id="webTourModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		       	<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>  
+				<div class="modal-body">
+					<div class="contain">
+						<div class="row">
+							<div class="col-sm-12">							
+								<div class="txt-wrapper">
+									<p class="title underline">Website Tour</p>	
+									<p class="desc">
+										Check out the cool features on this website. Take a quick look by clicking on the website tour below.	
+									</p>
+								</div>
+								<div class="modal-action">
+									<div class="btn-wrapper">
+										<a class="yes btn btn-green" href="javascript:void(0);">Yes, walk me through the tour</a>
+										<a class="no btn btn-green-border" href="javascript:void(0);">No, thanks</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		     
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Delete Photo Modal -->
+		<div class="modal fade" id="deletePhotoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		       	<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>  
+				<div class="modal-body">
+					<div class="contain">
+						<div class="row">
+							<div class="col-sm-12">							
+								<div class="txt-wrapper">
+									<p class="title underline">Delete this photo</p>	
+									<div class="img-wrapper">
+										<img src="images/dummy/list1.jpg"/>	
+									</div>
+								</div>
+								<div class="modal-action">
+									<div class="btn-wrapper">
+										<a class="cancel-btn btn btn-green-border" href="javascript:void(0);">Cancel</a>
+										<a class="delete-btn btn btn-green" href="javascript:void(0);">Delete</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		     
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Edit Photo Modal -->
+		<div class="modal fade" id="editPhotoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		       	<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>  
+				<div class="modal-body">
+					<div class="contain">
+						<div class="row">
+							<div class="col-sm-12">							
+								<div class="txt-wrapper">
+									<p class="title underline">Before you save this photo</p>	
+									<p class="desc">To resize or crop your image, drag the zoom tool below to the left or right. Or drag your image to reposition it. 
+									</p>
+									<div class="img-wrapper">
+										<img id="cropimage" alt="" src="images/dummy/03917_wdc56upclose_1366x768.jpg" />
+										<div class="slider-wrapper">
+											<a class="zoom-out" href="javascript:void(0);">
+												<img src="images/global/zoom-out.png" />
+											</a>
+											<div id="slider">
+											</div>
+											<a class="zoom-in" href="javascript:void(0);">
+												<img src="images/global/zoom-in.png" />
+											</a>	
+										</div>
+									</div>
+									
+								</div>
+								<div class="modal-action">
+									<div class="btn-wrapper">
+										<a class="cancel-btn btn btn-green-border" href="javascript:void(0);">Cancel</a>
+										<a class="save-btn btn btn-green" href="javascript:void(0);">Save Photo</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		     
+		    </div>
+		  </div>
+		</div>
+
+		<!-- Term & Condition Modal -->
+		<div class="modal fade" id="conditionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		       	<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>  
+				<div class="modal-body">
+					<div class="contain">
+						<div class="row">
+							<div class="col-sm-12">							
+								<div class="txt-wrapper">
+									<p class="title underline">Term &amp; Conditions</p>	
+									<div class="txt-content">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dictum, mi vel semper pellentesque, eros nibh euismod orci, iaculis consectetur lectus risus non massa. Cras finibus a nisl eget condimentum. Morbi lorem tellus, feugiat eu pellentesque in, porta quis sem. Integer eu nunc sit amet est laoreet auctor cursus at felis. </p>
+										<p>
+										Aliquam facilisis velit eget velit tempus pellentesque. Nam non sollicitudin lacus, non sollicitudin libero. Duis vel viverra ipsum. Curabitur aliquet, nibh non commodo dignissim, massa metus condimentum ex, lobortis dignissim quam nisi in orci. 
+										</p>
+										<p>
+										<strong>Aenean vitae leo nec sapien</strong>
+										Vivamus ac luctus justo. Nullam vitae nisl non felis tempor molestie in id erat. Ut semper justo lorem, eget sagittis velit ultrices eget. Vestibulum ac purus mauris. Nulla vehicula nisl a venenatis imperdiet. Nunc fringilla nibh dui, ut bibendum dui maximus et. Donec tempus commodo nisl quis fringilla. Quisque at ex sapien. Morbi eu odio sodales, sollicitudin tellus ac, blandit massa. Morbi nibh enim, sodales nec tristique quis, feugiat mattis est. Fusce tincidunt ex et pulvinar blandit. Sed auctor id purus ac venenatis. 
+										</p>
+										<p>
+										Praesent dictum odio a lectus venenatis facilisis. 
+										Nulla finibus tincidunt lorem. Duis vel justo fermentum ipsum egestas accumsan et a leo. Integer fringilla aliquet luctus. Quisque euismod, augue at euismod aliquet, nisl magna efficitur tortor, in ultrices felis lacus at nibh. Nulla quam nisl, accumsan nec elit
+										</p>
+									</div>
+									
+								</div>
+								<div class="modal-action">
+									<div class="btn-wrapper">
+										<a class="close-btn btn btn-green" href="javascript:void(0);">Close</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		     
+		    </div>
+		  </div>
+		</div>
+
+		<div id="preloader">
+			<img src="images/global/preloader.gif"/>
+		</div>
+
+		<script src="scripts/vendor.js"></script>
+		<script src="scripts/plugins.js"></script>
+		<script src="scripts/tour.js"></script>
+		<script src="scripts/main.js"></script>
+		<script src="scripts/home.js"></script>
+
+
+		<script type="text/javascript">
+			//$('#editPhotoModal').modal('show');	
+			//$('#deletePhotoModal').modal('show');	
+			//$('#webTourModal').modal('show');	
+			//$('#forgotPassModal').modal('show');	
+			//$('#deleteRecipeModal').modal('show');	
+			//$('#welcomeModal').modal('show');	
+			//$('#conditionModal').modal('show');	
+		</script>
+	</body>
+</html>

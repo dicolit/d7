@@ -1,0 +1,721 @@
+<?php
+
+/**
+ * Implements hook_permission().
+ */
+function nscem_permission() {
+  $perms = array(
+    'administer nscem' => array(
+      'title' => t('administer NSCEM'),
+    ),
+
+  );
+  return $perms;
+}
+
+
+/**
+ * Implements hook_help().
+ */
+function nscem_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#nscem':
+      $output = 'Update late';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_init().
+ */
+function nscem_init() {
+
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function nscem_menu() {
+
+  $items = array();
+  /* Pages */
+  $items['home'] = array(
+    'title' => 'Home page',
+    'page callback' => 'home_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/home_page.inc',
+  );
+
+  $items['cook'] = array(
+    'title' => 'Cook page',
+    'page callback' => 'cook_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/cook_page.inc',
+  );
+
+  $items['cook/%'] = array(
+    'title' => 'Cook Detail page',
+    'page callback' => 'cook_detail_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/cook_detail_page.inc',
+  );
+
+  $items['read'] = array(
+    'title' => 'Read page',
+    'page callback' => 'read_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/read_page.inc',
+  );
+
+  $items['read/%'] = array(
+    'title' => 'Read Detail page',
+    'page callback' => 'read_detail_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/read_detail_page.inc',
+  );
+
+  $items['move'] = array(
+    'title' => 'Move page',
+    'page callback' => 'move_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/move_page.inc',
+  );
+
+  $items['move/%'] = array(
+    'title' => 'Move Detail page',
+    'page callback' => 'move_detail_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/move_detail_page.inc',
+  );
+
+  $items['relax'] = array(
+    'title' => 'Relax page',
+    'page callback' => 'relax_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/relax_page.inc',
+  );
+
+  $items['relax/%'] = array(
+    'title' => 'Relax Detail page',
+    'page callback' => 'relax_detail_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/relax_detail_page.inc',
+  );
+
+  $items['sign-up'] = array(
+    'title' => 'Sign Up page',
+    'page callback' => 'sign_up_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/sign_up_page.inc',
+  );
+
+  $items['sign-in'] = array(
+    'title' => 'Sign In page',
+    'page callback' => 'sign_in_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/sign_in_page.inc',
+  );
+
+  $items['confirm-email/%'] = array(
+    'title' => 'Confirm email page',
+    'page callback' => 'confirm_email_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/confirm_email_page.inc',
+  );
+
+  $items['forgot-password'] = array(
+    'title' => 'Forgot Password page',
+    'page callback' => 'forgot_password_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/forgot_password_page.inc',
+  );
+
+  $items['activation'] = array(
+    'title' => 'Activation page',
+    'page callback' => 'activation_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/activation_page.inc',
+  );
+
+  $items['brand'] = array(
+    'title' => 'Brand page',
+    'page callback' => 'brand_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/brand_page.inc',
+  );
+
+  $items['brand/%'] = array(
+    'title' => 'Brand Detail page',
+    'page callback' => 'brand_detail_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/brand_detail_page.inc',
+  );
+
+  $items['contact-us'] = array(
+    'title' => 'Contact Us page',
+    'page callback' => 'contact_us_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/contact_us_page.inc',
+  );
+
+  $items['tc'] = array(
+    'title' => 'Terms & Conditions page',
+    'page callback' => 'tc_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/tc_page.inc',
+  );
+
+  $items['search'] = array(
+    'title' => 'Search page',
+    'page callback' => 'search_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/search_page.inc',
+  );
+
+  $items['profile/%'] = array(
+    'title' => 'Your Account page',
+    'page callback' => 'profile_detail_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/profile_detail_page.inc',
+  );
+
+  $items['profile/%/step1'] = array(
+    'title' => 'Completion - Step 1',
+    'page callback' => 'profile_step1_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/profile_step1_page.inc',
+  );
+
+  $items['profile/%/step2'] = array(
+    'title' => 'Completion - Step 2',
+    'page callback' => 'profile_step2_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/profile_step2_page.inc',
+  );
+
+  $items['profile/%/step3'] = array(
+    'title' => 'Completion - Step 3',
+    'page callback' => 'profile_step3_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/profile_step3_page.inc',
+  );
+
+  $items['profile/%/step4'] = array(
+    'title' => 'Completion - Step 4',
+    'page callback' => 'profile_step4_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/profile_step4_page.inc',
+  );
+
+  $items['profile/%/dashboard'] = array(
+    'title' => 'Your Dashboard page',
+    'page callback' => 'profile_dashboard_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/profile_dashboard_page.inc',
+  );
+
+  $items['profile/%/rewards'] = array(
+    'title' => 'Your Rewards page',
+    'page callback' => 'profile_rewards_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/profile_rewards_page.inc',
+  );
+
+  $items['profile/%/score-board'] = array(
+    'title' => 'Your Score board page',
+    'page callback' => 'profile_score_board_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/profile_score_board_page.inc',
+  );
+
+  $items['profile/%/saved-snacks'] = array(
+    'title' => 'Saved Snacks',
+    'page callback' => 'profile_saved_snacks_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/profile_saved_snacks_page.inc',
+  );
+
+  $items['profile/%/modified-recipes'] = array(
+    'title' => 'Modified Recipes',
+    'page callback' => 'profile_modified_recipes_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/profile_modified_recipes_page.inc',
+  );
+
+  $items['profile/%/recipe/%/edit'] = array(
+    'title' => 'Edit recipe',
+    'page callback' => 'profile_recipe_edit_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/profile_recipe_edit_page.inc',
+  );
+
+  $items['profile/%/request-recipe'] = array(
+    'title' => 'Request recipe',
+    'page callback' => 'profile_request_recipe_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/profile_request_recipe_page.inc',
+  );
+
+  /* Admin */
+  $items['admin/nscem'] = array(
+    'title' => 'NSCEM',
+    'description' => '',
+    'page callback' => 'admin_nscem_page',
+    'access arguments' => array('administer nscem'),
+    'file' => 'admin/admin_nscem_page.inc',
+  );
+  $items['admin/nscem/config'] = array(
+    'title' => 'Website configuration'
+    , 'page callback' => 'drupal_get_form'
+    , 'page arguments' => array('admin_nscem_config_page')
+    , 'access arguments' => array('administer nscem')
+    , 'file' => 'admin/admin_nscem_config_page.inc'
+  );
+  $items['admin/nscem/cook'] = array(
+    'title' => 'Cook Detail Management'
+    , 'page callback' => 'drupal_get_form'
+    , 'page arguments' => array('admin_nscem_cook_page')
+    , 'access arguments' => array('administer nscem')
+    , 'file' => 'admin/admin_nscem_cook_page.inc'
+  );
+  $items['admin/nscem/cook/list'] = array(
+    'type' => MENU_DEFAULT_LOCAL_TASK
+  );
+  $items['admin/nscem/relax'] = array(
+    'title' => 'Relax Detail Management'
+    , 'page callback' => 'drupal_get_form'
+    , 'page arguments' => array('admin_nscem_relax_page')
+    , 'access arguments' => array('administer nscem')
+    , 'file' => 'admin/admin_nscem_relax_page.inc'
+  );
+  //Clinic
+  /*
+  $items['admin/nscem/clinic'] = array(
+    'title' => 'Clinic Management',
+    'description' => '',
+    'page callback' => 'admin_nscem_clinic_page',
+    'access arguments' => array('administer nscem'),
+    'file' => 'admin/admin_nscem_clinic_page.inc',
+  );
+
+  $items['admin/nscem/clinic/list'] = array(
+    'title' => 'Clinic List',
+    'description' => 'Show all clinics.',
+    'page callback' => 'admin_nscem_clinic_page',
+    'access arguments' => array('administer nscem'),
+    'file' => 'admin/admin_nscem_clinic_page.inc',
+  );
+
+  $items['admin/nscem/clinic/%/edit'] = array(
+    'title' => 'Edit Clinic',
+    'description' => '',
+    'page callback' => 'admin_nscem_clinic_edit_page',
+    'access arguments' => array('administer nscem'),
+    'file' => 'admin/admin_nscem_clinic_edit_page.inc',
+  );
+  */
+
+  /* API */
+  $items['api/nscem'] = array(
+    'title' => 'NSCEM - API',
+    'page callback' => 'api_nscem_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'nscem.api.inc',
+  );
+
+  /* Settings */
+  $items['admin/config/system/nscem'] = array(
+    'title' => 'NSCEM',
+    'description' => 'NSCEM config pages.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('admin_config_system_nscem_settings'),
+    'access arguments' => array('administer nscem'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'nscem.config.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function nscem_menu_alter(&$items) {
+  $items['node/%node']['page callback'] = 'nscem_node_page_view';
+}
+
+function nscem_node_page_view($node) {
+  switch($node->type) {
+    case 'cook_detail':
+      require_once 'page/cook_detail_page.inc';
+      $result = cook_detail_page($node);
+      break;
+    default:
+      $result = node_page_view($node);
+      break;
+  }
+  return $result;
+}
+
+function nscem_form_alter(&$form, &$form_state, $form_id) {
+  switch($form_id) {
+    case 'cook_detail_node_form':
+      _build_cook_input_form($form, $form_state);
+      break;
+    case 'relax_detail_node_form':
+      _build_relax_input_form($form, $form_state);
+      break;
+    default:
+      break;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nscem_theme() {
+  $theme_hooks = array(
+    'home_page' => array(
+      'template' => 'home-page',
+      'variables' => array('data' => NULL)
+    ),
+    'home_form' => array(
+      'template' => 'home-form',
+      'render element' => 'form',
+    ),
+
+    /* Deleted */
+    'category_page' => array(
+        'template' => 'category-page',
+        'variables' => array('data' => NULL)
+    ),
+
+
+    'cook_page' => array(
+      'template' => 'cook-page',
+      'variables' => array('data' => NULL)
+    ),
+
+    'cook_form' => array(
+      'template' => 'cook-form',
+      'render element' => 'form',
+    ),
+
+    'cook_detail_page' => array(
+      'template' => 'cook-detail-page',
+      'variables' => array('data' => NULL)
+    ),
+    'cook_detail_form' => array(
+      'template' => 'cook-detail-form',
+      'render element' => 'form',
+    ),
+
+    'read_page' => array(
+      'template' => 'read-page',
+      'variables' => array('data' => NULL)
+    ),
+    'read_form' => array(
+      'template' => 'read-form',
+      'render element' => 'form',
+    ),
+
+
+    'read_detail_page' => array(
+      'template' => 'read-detail-page',
+      'variables' => array('data' => NULL)
+    ),
+    'read_detail_form' => array(
+      'template' => 'read-detail-form',
+      'render element' => 'form',
+    ),
+
+    'move_page' => array(
+      'template' => 'move-page',
+      'variables' => array('data' => NULL)
+    ),
+    'move_form' => array(
+      'template' => 'move-form',
+      'render element' => 'form',
+    ),
+
+
+    'move_detail_page' => array(
+      'template' => 'move-detail-page',
+      'variables' => array('data' => NULL)
+    ),
+    'move_detail_form' => array(
+      'template' => 'move-detail-form',
+      'render element' => 'form',
+    ),
+
+    'relax_page' => array(
+      'template' => 'relax-page',
+      'variables' => array('data' => NULL)
+    ),
+    'relax_form' => array(
+      'template' => 'relax-form',
+      'render element' => 'form',
+    ),
+
+    'relax_detail_page' => array(
+      'template' => 'relax-detail-page',
+      'variables' => array('data' => NULL)
+    ),
+    'relax_detail_form' => array(
+      'template' => 'relax-detail-form',
+      'render element' => 'form',
+    ),
+
+    'sign_up_page' => array(
+      'template' => 'sign-up-page',
+      'variables' => array('data' => NULL)
+    ),
+    'sign_up_form' => array(
+      'template' => 'sign-up-form',
+      'render element' => 'form',
+    ),
+
+    'sign_in_page' => array(
+      'template' => 'sign-in-page',
+      'variables' => array('data' => NULL)
+    ),
+    'sign_in_form' => array(
+      'template' => 'sign-in-form',
+      'render element' => 'form',
+    ),
+
+    'confirm_email_page' => array(
+      'template' => 'confirm-email-page',
+      'variables' => array('data' => NULL)
+    ),
+    'confirm_email_form' => array(
+      'template' => 'confirm-email-form',
+      'render element' => 'form',
+    ),
+
+    'forgot_password_page' => array(
+      'template' => 'forgot-password-page',
+      'variables' => array('data' => NULL)
+    ),
+    'forgot_password_form' => array(
+      'template' => 'forgot-password-form',
+      'render element' => 'form',
+    ),
+
+    'activation_page' => array(
+      'template' => 'activation-page',
+      'variables' => array('data' => NULL)
+    ),
+    'activation_form' => array(
+      'template' => 'activation-form',
+      'render element' => 'form',
+    ),
+
+    'brand_page' => array(
+      'template' => 'brand-page',
+      'variables' => array('data' => NULL)
+    ),
+    'brand_form' => array(
+      'template' => 'brand-form',
+      'render element' => 'form',
+    ),
+
+    'brand_detail_page' => array(
+      'template' => 'brand-detail-page',
+      'variables' => array('data' => NULL)
+    ),
+    'brand_detail_form' => array(
+      'template' => 'brand-detail-form',
+      'render element' => 'form',
+    ),
+
+    'contact_us_page' => array(
+      'template' => 'contact-us-page',
+      'variables' => array('data' => NULL)
+    ),
+    'contact_us_form' => array(
+      'template' => 'contact-us-form',
+      'render element' => 'form',
+    ),
+
+    'tc_page' => array(
+      'template' => 'tc-page',
+      'variables' => array('data' => NULL)
+    ),
+    'tc_form' => array(
+      'template' => 'tc-form',
+      'render element' => 'form',
+    ),
+
+    'search_page' => array(
+      'template' => 'search-page',
+      'variables' => array('data' => NULL)
+    ),
+    'search_form' => array(
+      'template' => 'search-form',
+      'render element' => 'form',
+    ),
+
+
+
+    'profile_step1_page' => array(
+      'template' => 'profile-step1-page',
+      'variables' => array('data' => NULL)
+    ),
+
+    'profile_step1_form' => array(
+      'template' => 'profile-step1-form',
+      'render element' => 'form',
+    ),
+
+    'profile_step2_page' => array(
+      'template' => 'profile-step2-page',
+      'variables' => array('data' => NULL)
+    ),
+
+    'profile_step2_form' => array(
+      'template' => 'profile-step2-form',
+      'render element' => 'form',
+    ),
+
+    'profile_step3_page' => array(
+      'template' => 'profile-step3-page',
+      'variables' => array('data' => NULL)
+    ),
+
+    'profile_step3_form' => array(
+      'template' => 'profile-step3-form',
+      'render element' => 'form',
+    ),
+
+    'profile_step4_page' => array(
+      'template' => 'profile-step4-page',
+      'variables' => array('data' => NULL)
+    ),
+
+    'profile_step4_form' => array(
+      'template' => 'profile-step4-form',
+      'render element' => 'form',
+    ),
+
+
+    'profile_detail_page' => array(
+      'template' => 'profile-detail-page',
+      'variables' => array('data' => NULL)
+    ),
+
+    'profile_detail_form' => array(
+      'template' => 'profile-detail-form',
+      'render element' => 'form',
+    ),
+
+    'profile_dashboard_page' => array(
+      'template' => 'profile-dashboard-page',
+      'variables' => array('data' => NULL)
+    ),
+    'profile_dashboard_form' => array(
+      'template' => 'profile-dashboard-form',
+      'render element' => 'form',
+    ),
+
+    'profile_rewards_page' => array(
+      'template' => 'profile-rewards-page',
+      'variables' => array('data' => NULL)
+    ),
+    'profile_rewards_form' => array(
+      'template' => 'profile-rewards-form',
+      'render element' => 'form',
+    ),
+
+    'profile_score_board_page' => array(
+      'template' => 'profile-score-board-page',
+      'variables' => array('data' => NULL)
+    ),
+    'profile_score_board_form' => array(
+      'template' => 'profile-score-board-form',
+      'render element' => 'form',
+    ),
+
+    'profile_saved_snacks_page' => array(
+      'template' => 'profile-saved-snacks-page',
+      'variables' => array('data' => NULL)
+    ),
+    'profile_saved_snacks_form' => array(
+      'template' => 'profile-saved-snacks-form',
+      'render element' => 'form',
+    ),
+
+    'profile_modified_recipes_page' => array(
+      'template' => 'profile-modified-recipes-page',
+      'variables' => array('data' => NULL)
+    ),
+    'profile_modified_recipes_form' => array(
+      'template' => 'profile-modified-recipes-form',
+      'render element' => 'form',
+    ),
+
+    'profile_recipe_edit_page' => array(
+      'template' => 'profile-recipe-edit-page',
+      'variables' => array('data' => NULL)
+    ),
+    'profile_recipe_edit_form' => array(
+      'template' => 'profile-recipe-edit-form',
+      'render element' => 'form',
+    ),
+
+    'profile_request_recipe_page' => array(
+      'template' => 'profile-request-recipe-page',
+      'variables' => array('data' => NULL)
+    ),
+    'profile_request_recipe_form' => array(
+      'template' => 'profile-request-recipe-form',
+      'render element' => 'form',
+    ),
+
+    /* SYSTEM FORM */
+    'user_login' => array(
+      'render element' => 'form',
+      'template' => 'user-login-form',
+    ),
+    'user_register_form' => array(
+      'render element' => 'form',
+      'template' => 'user-register-form',
+    ),
+  );
+
+  return $theme_hooks;
+}
+

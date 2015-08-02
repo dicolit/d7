@@ -1,0 +1,1 @@
+//relax_page.js

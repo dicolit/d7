@@ -1,0 +1,10 @@
+name = NSCEM
+description = NSCEM module.
+
+package = OgilvyOne
+version = VERSION
+core = 7.x
+
+; Information added by Drupal.org packaging script on 2014-08-06
+version = "7.31"
+datestamp = "1407346433"

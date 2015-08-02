@@ -1,0 +1,229 @@
+<?php
+
+/**
+ * Implements hook_permission().
+ */
+function ntcv_permission() {
+  $perms = array(
+    'administer ntcv' => array(
+      'title' => t('administer NTCV'),
+    ),
+
+  );
+  return $perms;
+}
+
+
+/**
+ * Implements hook_help().
+ */
+function ntcv_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#ntcv':
+      $output = '... Update late';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_custom_theme().
+ */
+/*function kcm_backend_data_management_custom_theme() {
+  return 'kcm_backend_data_management';
+}*/
+
+
+
+/**
+ * Implements hook_menu().
+ */
+function ntcv_menu() {
+
+  $items = array();
+  /* Pages */
+  $items['request'] = array(
+    'title' => 'Request page',
+    'page callback' => 'request_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/request_page.inc',
+  );
+
+  $items['request/%/edit'] = array(
+    'title' => 'Add Request page',
+    'page callback' => 'request_edit_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/request_edit_page.inc',
+  );
+
+  /* Admin */
+  $items['admin/ntcv'] = array(
+    'title' => 'NTCV',
+    'description' => '',
+    'page callback' => 'admin_ntcv_page',
+    'access arguments' => array('administer ntcv'),
+    'file' => 'admin/admin_ntcv_page.inc',
+  );
+
+
+  //Clinic
+  /*
+  $items['admin/ntcv/clinic'] = array(
+    'title' => 'Clinic Management',
+    'description' => '',
+    'page callback' => 'admin_ntcv_clinic_page',
+    'access arguments' => array('administer ntcv'),
+    'file' => 'admin/admin_ntcv_clinic_page.inc',
+  );
+
+  $items['admin/ntcv/clinic/list'] = array(
+    'title' => 'Clinic List',
+    'description' => 'Show all clinics.',
+    'page callback' => 'admin_ntcv_clinic_page',
+    'access arguments' => array('administer ntcv'),
+    'file' => 'admin/admin_ntcv_clinic_page.inc',
+  );
+
+  $items['admin/ntcv/clinic/%/edit'] = array(
+    'title' => 'Edit Clinic',
+    'description' => '',
+    'page callback' => 'admin_ntcv_clinic_edit_page',
+    'access arguments' => array('administer ntcv'),
+    'file' => 'admin/admin_ntcv_clinic_edit_page.inc',
+  );
+  */
+
+  /* API */
+  $items['api/ntcv'] = array(
+    'title' => 'NTCV - API',
+    'page callback' => 'api_ntcv_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'ntcv.api.inc',
+  );
+
+  /* Settings */
+  $items['admin/config/system/ntcv'] = array(
+    'title' => 'NTCV Config',
+    'description' => 'NTCV config pages.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('admin_config_system_ntcv_settings'),
+    'access arguments' => array('administer ntcv'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'ntcv.config.inc',
+  );
+
+
+
+  return $items;
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function ntcv_theme() {
+  return array(
+    'home_page' => array(
+      'template' => 'home-page',
+      'variables' => array('data' => NULL)
+    ),
+    'block_hot_items' => array(
+      'template' => 'block-hot-items',
+      'variables' => array('data' => NULL)
+    ),
+    'request_page' => array(
+      'template' => 'request-page',
+      'variables' => array('data' => NULL)
+    ),
+    'request_form' => array(
+      'template' => 'request-form',
+      'render element' => 'form',
+    ),
+    'request_edit_page' => array(
+      'template' => 'request-edit-page',
+      'variables' => array('data' => NULL)
+    ),
+    'request_edit_form' => array(
+      'template' => 'request-edit-form',
+      'render element' => 'form',
+    ),
+    /* SYSTEM FORM */
+    /*
+    'user_login' => array(
+      'render element' => 'form',
+      'template' => 'login-form',
+      'path' => 'templates/form',
+    ),*/
+    'search_form' => array(
+      'render element' => 'form',
+      'template' => 'search-form',
+    ),
+
+
+  );
+
+}
+
+
+
+function ntcv_node_view($node, $view_mode, $langcode) {
+
+  switch($view_mode) {
+    case 'full':
+      switch($node->type) {
+        case 'page':
+          // Static page
+
+          $template_id = __get_field_value($node->field_template_id);
+
+          switch($template_id) {
+            case 'Home':
+              include DRUPAL_ROOT.'/'.drupal_get_path('module','ntcv').'/page/home_page.inc';
+              $node->custom_content = home_page($node);
+              break;
+            case 'contact_us':
+              include DRUPAL_ROOT.'/'.drupal_get_path('module','ntcv').'/page/contact_us_page.inc';
+              $node->custom_content = contact_us_page($node);
+              break;
+            default:
+              $node->custom_content = '';
+              break;
+          }
+          break;
+
+        case 'landing_page':
+          // Home page
+          include DRUPAL_ROOT.'/'.drupal_get_path('module','vietnam_idol').'/page/landing_page.inc';
+          $node->custom_content = landing_page($node);
+          break;
+
+        case 'terms_page':
+          // Home page
+          include DRUPAL_ROOT.'/'.drupal_get_path('module','vietnam_idol').'/page/terms_page.inc';
+          $node->custom_content = terms_page($node);
+          break;
+
+        case 'prizes_page':
+          $path = drupal_get_path_alias(url('node/'.$node->nid));
+          if($path == '/prizes') {
+            // Prizes page
+            include DRUPAL_ROOT.'/'.drupal_get_path('module','vietnam_idol').'/page/prizes_page.inc';
+            $node->custom_content = prizes_page($node);
+          }
+
+          if($path == '/winners') {
+            // Prizes page
+            include DRUPAL_ROOT.'/'.drupal_get_path('module','vietnam_idol').'/page/winners_page.inc';
+            $node->custom_content = winners_page($node);
+          }
+          break;
+      }
+
+      break;
+    default:
+      //do nothing
+      break;
+  }
+}
