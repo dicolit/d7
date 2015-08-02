@@ -1,0 +1,18 @@
+/home
+/service
+/project
+/client
+/contact-us
+
+* Content types
+- service_detail
+- project_detail
+- about_us
+- contact_us
+
+* CMS admin
+- Service List
+- Project List
+- Client List
+- Client Edit
+- Contact List

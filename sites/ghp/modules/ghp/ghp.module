@@ -1,0 +1,332 @@
+<?php
+
+/**
+ * Implements hook_permission().
+ */
+function ghp_permission() {
+  $perms = array(
+    'administer ghp' => array(
+      'title' => t('administer ghp'),
+    ),
+
+  );
+  return $perms;
+}
+
+
+/**
+ * Implements hook_help().
+ */
+function ghp_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#ghp':
+      $output = 'Update late';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_init().
+ */
+function ghp_init() {
+
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function ghp_menu() {
+
+  $items = array();
+  /* Pages */
+
+  $items['home'] = array(
+    'title' => 'Home page',
+    'page callback' => 'home_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'page/home_page.inc',
+  );
+
+
+  /* Admin */
+  $items['admin/ghp'] = array(
+    'title' => 'ghp',
+    'description' => '',
+    'page callback' => 'admin_ghp_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_page.inc',
+  );
+
+  // Project
+  $items['admin/ghp/service'] = array(
+    'title' => 'Service Management',
+    'description' => '',
+    'page callback' => 'admin_ghp_service_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_service_page.inc',
+  );
+
+  $items['admin/ghp/service/list'] = array(
+    'title' => 'Service List',
+    'description' => 'Show all services.',
+    'page callback' => 'admin_ghp_service_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_service_page.inc',
+  );
+
+  $items['admin/ghp/service/%/edit'] = array(
+    'title' => 'Edit Service',
+    'description' => '',
+    'page callback' => 'admin_ghp_service_edit_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_service_edit_page.inc',
+  );
+
+  // Project
+  $items['admin/ghp/project'] = array(
+    'title' => 'Project Management',
+    'description' => '',
+    'page callback' => 'admin_ghp_project_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_project_page.inc',
+  );
+
+  $items['admin/ghp/project/list'] = array(
+    'title' => 'project List',
+    'description' => 'Show all projects.',
+    'page callback' => 'admin_ghp_project_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_project_page.inc',
+  );
+
+  $items['admin/ghp/project/%/edit'] = array(
+    'title' => 'Edit Project',
+    'description' => '',
+    'page callback' => 'admin_ghp_service_edit_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_project_edit_page.inc',
+  );
+
+  // Client
+  $items['admin/ghp/client'] = array(
+    'title' => 'client Management',
+    'description' => '',
+    'page callback' => 'admin_ghp_client_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_client_page.inc',
+  );
+
+  $items['admin/ghp/client/list'] = array(
+    'title' => 'client List',
+    'description' => 'Show all clients.',
+    'page callback' => 'admin_ghp_client_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_client_page.inc',
+  );
+
+  $items['admin/ghp/client/%/edit'] = array(
+    'title' => 'Edit Client',
+    'description' => '',
+    'page callback' => 'admin_ghp_service_edit_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_client_edit_page.inc',
+  );
+
+  // Contact Us
+  $items['admin/ghp/contact'] = array(
+    'title' => 'contact Management',
+    'description' => '',
+    'page callback' => 'admin_ghp_contact_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_contact_page.inc',
+  );
+
+  $items['admin/ghp/contact/list'] = array(
+    'title' => 'contact List',
+    'description' => 'Show all contacts.',
+    'page callback' => 'admin_ghp_contact_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_contact_page.inc',
+  );
+
+  $items['admin/ghp/contact/%/edit'] = array(
+    'title' => 'Edit contact',
+    'description' => '',
+    'page callback' => 'admin_ghp_service_edit_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_contact_edit_page.inc',
+  );
+
+  /* API */
+  $items['api/ghp'] = array(
+    'title' => 'ghp - API',
+    'page callback' => 'api_ghp_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'ghp.api.inc',
+  );
+
+  /* Settings */
+  $items['admin/config/system/ghp'] = array(
+    'title' => 'ghp',
+    'description' => 'ghp config pages.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('admin_config_system_ghp_settings'),
+    'access arguments' => array('administer ghp'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'ghp.config.inc',
+  );
+
+  return $items;
+}
+
+function ghp_node_view($node, $view_mode, $langcode) {
+  if($view_mode == 'full') {
+    switch($node->type) {
+      case 'project_detail':
+        require_once 'page/project_detail_page.inc';
+        $node->custom_content = project_detail_page($node);
+        break;
+      case 'service_detail':
+        require_once 'page/service_detail_page.inc';
+        $node->custom_content = service_detail_page($node);
+        break;
+      case 'about_us':
+        require_once 'page/about_us_page.inc';
+        $node->custom_content = about_us_page($node);
+        break;
+      case 'contact_us':
+        require_once 'page/contact_us_page.inc';
+        $node->custom_content = contact_us_page($node);
+        break;
+      case 'service_top':
+        require_once 'page/service_page.inc';
+        $node->custom_content = service_page($node);
+        break;
+      case 'project_top':
+        require_once 'page/project_page.inc';
+        $node->custom_content = project_page($node);
+        break;
+      case 'client_top':
+        require_once 'page/client_page.inc';
+        $node->custom_content = client_page($node);
+        break;
+      default:
+        $template_id = __get_field_value($node->field_template_id,'string');
+        switch($template_id) {
+          /*case 'service':
+            require_once 'page/service_page.inc';
+            $node->custom_content = service_page($node);
+            break;
+          case 'project':
+            require_once 'page/project_page.inc';
+            $node->custom_content = project_page($node);
+            break;
+          case 'client':
+            require_once 'page/client_page.inc';
+            $node->custom_content = client_page($node);
+            break;*/
+          default:
+            $node->custom_content = '';
+            break;
+        }
+
+        break;
+    }
+  }
+
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function ghp_theme() {
+  $theme_hooks = array(
+    /* /home */
+    'home_page' => array(
+      'template' => 'home-page',
+      'variables' => array('data' => NULL)
+    ),
+    'home_form' => array(
+      'template' => 'home-form',
+      'render element' => 'form',
+    ),
+
+    /* /service */
+    'service_page' => array(
+      'template' => 'service-page',
+      'variables' => array('data' => NULL)
+    ),
+    'service_form' => array(
+      'template' => 'service-form',
+      'render element' => 'form',
+    ),
+
+    /* /service/% */
+    'service_detail_page' => array(
+      'template' => 'service-detail-page',
+      'variables' => array('data' => NULL)
+    ),
+    'service_detail_form' => array(
+      'template' => 'service-detail-form',
+      'render element' => 'form',
+    ),
+
+    /* /project */
+    'project_page' => array(
+      'template' => 'project-page',
+      'variables' => array('data' => NULL)
+    ),
+    'project_form' => array(
+      'template' => 'project-form',
+      'render element' => 'form',
+    ),
+
+    /* /project/% */
+    'project_detail_page' => array(
+      'template' => 'project-detail-page',
+      'variables' => array('data' => NULL)
+    ),
+    'project_detail_form' => array(
+      'template' => 'project-detail-form',
+      'render element' => 'form',
+    ),
+
+    /* /contact-us */
+    'contact_us_page' => array(
+      'template' => 'contact-us-page',
+      'variables' => array('data' => NULL)
+    ),
+    'contact_us_form' => array(
+      'template' => 'contact-us-form',
+      'render element' => 'form',
+    ),
+
+    /* /client */
+    'client_page' => array(
+      'template' => 'client-page',
+      'variables' => array('data' => NULL)
+    ),
+    'client_form' => array(
+      'template' => 'client-form',
+      'render element' => 'form',
+    ),
+
+    /* SYSTEM FORM */
+    /*'user_login' => array(
+      'render element' => 'form',
+      'template' => 'user-login-form',
+    ),
+    'user_register_form' => array(
+      'render element' => 'form',
+      'template' => 'user-register-form',
+    ),*/
+
+  );
+
+  return $theme_hooks;
+}
+
