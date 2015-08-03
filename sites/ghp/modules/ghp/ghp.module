@@ -52,7 +52,7 @@ function ghp_menu() {
 
   /* Admin */
   $items['admin/ghp'] = array(
-    'title' => 'ghp',
+    'title' => 'GHP',
     'description' => '',
     'page callback' => 'admin_ghp_page',
     'access arguments' => array('administer ghp'),
@@ -94,7 +94,7 @@ function ghp_menu() {
   );
 
   $items['admin/ghp/project/list'] = array(
-    'title' => 'project List',
+    'title' => 'Project List',
     'description' => 'Show all projects.',
     'page callback' => 'admin_ghp_project_page',
     'access arguments' => array('administer ghp'),
@@ -109,34 +109,11 @@ function ghp_menu() {
     'file' => 'admin/admin_ghp_project_edit_page.inc',
   );
 
-  // Client
-  $items['admin/ghp/client'] = array(
-    'title' => 'client Management',
-    'description' => '',
-    'page callback' => 'admin_ghp_client_page',
-    'access arguments' => array('administer ghp'),
-    'file' => 'admin/admin_ghp_client_page.inc',
-  );
 
-  $items['admin/ghp/client/list'] = array(
-    'title' => 'client List',
-    'description' => 'Show all clients.',
-    'page callback' => 'admin_ghp_client_page',
-    'access arguments' => array('administer ghp'),
-    'file' => 'admin/admin_ghp_client_page.inc',
-  );
-
-  $items['admin/ghp/client/%/edit'] = array(
-    'title' => 'Edit Client',
-    'description' => '',
-    'page callback' => 'admin_ghp_service_edit_page',
-    'access arguments' => array('administer ghp'),
-    'file' => 'admin/admin_ghp_client_edit_page.inc',
-  );
 
   // Contact Us
   $items['admin/ghp/contact'] = array(
-    'title' => 'contact Management',
+    'title' => 'Contact Management',
     'description' => '',
     'page callback' => 'admin_ghp_contact_page',
     'access arguments' => array('administer ghp'),
@@ -302,6 +279,16 @@ function ghp_theme() {
     ),
     'contact_us_form' => array(
       'template' => 'contact-us-form',
+      'render element' => 'form',
+    ),
+
+    /* /about-us */
+    'about_us_page' => array(
+      'template' => 'about-us-page',
+      'variables' => array('data' => NULL)
+    ),
+    'about_us_form' => array(
+      'template' => 'about-us-form',
       'render element' => 'form',
     ),
 
