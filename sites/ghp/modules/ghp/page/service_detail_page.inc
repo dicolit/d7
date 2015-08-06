@@ -3,6 +3,12 @@ function service_detail_page($node = FALSE) {
   drupal_add_js(path_to_theme().'/js/service_detail_page.js', array('type' => 'file', 'scope' => 'footer'));
   drupal_add_css(path_to_theme().'/css/service_detail_page.css');
   $data = array();
+
+  $data['title'] = $node->title;
+  $data['banner_image'] = __get_field_value($node->field_image,'image',array('imagestyle'=>'service_banner'));
+  $data['body'] = __get_field_value($node->body);
+
+
   $service_detail_form = drupal_get_form('service_detail_form');
   $data['service_detail_form'] = drupal_render($service_detail_form);
   $output = theme('service_detail_page',array('data'=>$data));

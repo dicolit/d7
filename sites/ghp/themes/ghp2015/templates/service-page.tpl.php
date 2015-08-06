@@ -1,37 +1,9 @@
 <div class="row service-list">
+  <?php foreach($data['items'] as $item):?>
   <div class="col-md-12">
-    <a href="#">
-      <img src="http://ghp.com.vn/sites/default/files/event-decoration.jpg">
+    <a href="<?php print $item->href;?>">
+      <?php print $item->image;?>
     </a>
   </div>
-  <div class="col-md-12">
-    <a href="#">
-      <img src="http://ghp.com.vn/sites/default/files/event-decoration.jpg">
-    </a>
-  </div>
-  <div class="col-md-12">
-    <a href="#">
-      <img src="http://ghp.com.vn/sites/default/files/event-decoration.jpg">
-    </a>
-  </div>
-  <div class="col-md-12">
-    <a href="#">
-      <img src="http://ghp.com.vn/sites/default/files/event-decoration.jpg">
-    </a>
-  </div>
-  <div class="col-md-12">
-    <a href="#">
-      <img src="http://ghp.com.vn/sites/default/files/event-decoration.jpg">
-    </a>
-  </div>
-  <div class="col-md-12">
-    <a href="#">
-      <img src="http://ghp.com.vn/sites/default/files/event-decoration.jpg">
-    </a>
-  </div>
-  <div class="col-md-12">
-    <a href="#">
-      <img src="http://ghp.com.vn/sites/default/files/event-decoration.jpg">
-    </a>
-  </div>
+  <?php endforeach;?>
 </div>

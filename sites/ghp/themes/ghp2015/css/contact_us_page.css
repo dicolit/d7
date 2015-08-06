@@ -1,1 +1,17 @@
 /* contact_us_page */
+.contact-us-address {
+  padding:50px 20px 20px 0px;
+}
+
+.contact-us-form {
+  padding:10px 0px 20px 0px;
+}
+
+
+.contact-us-form .grippie {
+  display: none;
+}
+
+.contact-us-form #edit-send {
+  float:right;
+}

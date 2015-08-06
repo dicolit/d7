@@ -1,6 +1,6 @@
 <?php if($data['banner_url']):?>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 about-us-banner">
     <img src="<?php print $data['banner_url'];?>">
   </div>
 </div>

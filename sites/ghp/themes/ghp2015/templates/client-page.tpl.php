@@ -1,34 +1,14 @@
 <div class="client-list-container">
   <div class="row client-list">
-    <div class="col-md-3 client-item">
-      <img src="http://ghp.com.vn/sites/default/files/image/shiseido.jpg">
+  <?php foreach($data['items'] as $item):?>
+    <div class="col-md-4 client-item">
+      <?php print $item->image;?>
     </div>
-    <div class="col-md-3 client-item">
-      <img src="http://ghp.com.vn/sites/default/files/image/shiseido.jpg">
+  <?php endforeach;?>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <?php print $data['pager'];?>
     </div>
-    <div class="col-md-3 client-item">
-      <img src="http://ghp.com.vn/sites/default/files/image/shiseido.jpg">
-    </div>
-
-    <div class="col-md-3 client-item">
-      <img src="http://ghp.com.vn/sites/default/files/image/shiseido.jpg">
-    </div>
-    <div class="col-md-3 client-item">
-      <img src="http://ghp.com.vn/sites/default/files/image/shiseido.jpg">
-    </div>
-    <div class="col-md-3 client-item">
-      <img src="http://ghp.com.vn/sites/default/files/image/shiseido.jpg">
-    </div>
-
-    <div class="col-md-3 client-item">
-      <img src="http://ghp.com.vn/sites/default/files/image/shiseido.jpg">
-    </div>
-    <div class="col-md-3 client-item">
-      <img src="http://ghp.com.vn/sites/default/files/image/shiseido.jpg">
-    </div>
-    <div class="col-md-3 client-item">
-      <img src="http://ghp.com.vn/sites/default/files/image/shiseido.jpg">
-    </div>
-
   </div>
 </div>

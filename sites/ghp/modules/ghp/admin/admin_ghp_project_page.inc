@@ -10,7 +10,7 @@ function admin_ghp_project_page() {
 }
 
 function admin_ghp_project_form($form, &$form_state) {
-
+  $destination = drupal_get_destination();
 
   $form['filter'] = array(
     '#type' => 'fieldset',
@@ -54,18 +54,19 @@ function admin_ghp_project_form($form, &$form_state) {
 
     $options[$value->nid] = array(
       'id' => $value->nid,
-      'title' => $value->title,
+      'title' => l($value->title,'node/'.$value->nid),
       'status' => $value->status,
       'created'=>date('c',$value->created),
       );
 
       // Build a list of all the accessible operations for the current record.
     $operations = array();
-    /*$operations['edit'] = array(
+    $operations['edit'] = array(
       'title' => t('Edit'),
-      'href' => 'admin/ponds_atlantic/photo/' . $value->id . '/edit',
+      'href' => 'node/' . $value->nid . '/edit',
+      'query'=>$destination,
       );
-    */
+
     $options[$value->nid]['operations'] = array(
       'data' => array(
         '#theme' => 'links__node_operations',

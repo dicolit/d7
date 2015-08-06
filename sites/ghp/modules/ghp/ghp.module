@@ -76,13 +76,6 @@ function ghp_menu() {
     'file' => 'admin/admin_ghp_service_page.inc',
   );
 
-  $items['admin/ghp/service/%/edit'] = array(
-    'title' => 'Edit Service',
-    'description' => '',
-    'page callback' => 'admin_ghp_service_edit_page',
-    'access arguments' => array('administer ghp'),
-    'file' => 'admin/admin_ghp_service_edit_page.inc',
-  );
 
   // Project
   $items['admin/ghp/project'] = array(
@@ -101,15 +94,31 @@ function ghp_menu() {
     'file' => 'admin/admin_ghp_project_page.inc',
   );
 
-  $items['admin/ghp/project/%/edit'] = array(
-    'title' => 'Edit Project',
+
+  // Client
+  $items['admin/ghp/client'] = array(
+    'title' => 'Client Management',
     'description' => '',
-    'page callback' => 'admin_ghp_service_edit_page',
+    'page callback' => 'admin_ghp_client_page',
     'access arguments' => array('administer ghp'),
-    'file' => 'admin/admin_ghp_project_edit_page.inc',
+    'file' => 'admin/admin_ghp_client_page.inc',
   );
 
+  $items['admin/ghp/client/list'] = array(
+    'title' => 'Client List',
+    'description' => 'Show all clients.',
+    'page callback' => 'admin_ghp_client_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_client_page.inc',
+  );
 
+  $items['admin/ghp/client/%/edit'] = array(
+    'title' => 'Edit Client',
+    'description' => '',
+    'page callback' => 'admin_ghp_client_edit_page',
+    'access arguments' => array('administer ghp'),
+    'file' => 'admin/admin_ghp_client_edit_page.inc',
+  );
 
   // Contact Us
   $items['admin/ghp/contact'] = array(

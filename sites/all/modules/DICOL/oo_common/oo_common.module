@@ -1,10 +1,8 @@
 <?php
 
-if (!function_exists('__get_field_value')) {
-
-  /*
-   * Get field value
-   */
+/*
+ * Get field value
+ */
   function __get_field_value($field, $type = 'string', $attributes = array()) {
     switch($type) {
       case 'file_url' :
@@ -27,349 +25,101 @@ if (!function_exists('__get_field_value')) {
         //$filemime = explode('/', $eventGalleryObj->f2_filemime);
 
       break;
-      case 'collection' :
+
+      case 'files' :
       $arr = array();
 
-      if (!empty($field['und'])) :
-        foreach ($field['und'] as $item) {
-
-          $arr1 = entity_load('field_collection_item', array($item['value']));
-
-          foreach ($arr1 as $item1) {
-            $field_name = $item1 -> field_name;
-
-            switch($field_name) {
-              case 'field_final_winner':
-              $dataObj = new stdClass();
-              $dataObj ->final_winner_title = __get_field_value($item1 -> field_final_winner_title, 'string');
-              $dataObj ->final_winner_name = __get_field_value($item1 -> field_final_winner_name, 'string');
-              $dataObj ->final_winner_desc = __get_field_value($item1 -> field_final_winner_desc, 'string');
-              $dataObj ->final_winner_image = __get_field_value($item1 -> field_final_winner_image, 'image', array('imagestyle' => 'mini_prize'));
-              $arr[] = $dataObj;
-                  break;
-              case 'field_mini_game_prizes':
-              $dataObj = new stdClass();
-              $dataObj ->mini_prizes_title = __get_field_value($item1 -> field_prizes_title, 'string');
-              $dataObj ->mini_prizes_desc = __get_field_value($item1 -> field_prizes_desc, 'string');
-              $dataObj ->mini_thumbnail = __get_field_value($item1 -> field_image, 'image', array('imagestyle' => 'mini_prize'));
-              $arr[] = $dataObj;
-                  break;
-              case 'field_final_game_prizes':
-              $dataObj = new stdClass();
-              $dataObj ->final_prizes_title = __get_field_value($item1 -> field_final_prizes_title, 'string');
-              $dataObj ->final_prizes_desc = __get_field_value($item1 -> field_final_prizes_desc, 'string');
-              $dataObj ->final_thumbnail = __get_field_value($item1 -> field_final_prizes_image, 'image', array('imagestyle' => 'final_prize'));
-              $arr[] = $dataObj;
-                  break;
-              case 'field_galleries' :
-              $dataObj = new stdClass();
-              $dataObj -> title = __get_field_value($item1 -> field_gallery_title, 'string');
-              $dataObj -> summary = __get_field_value($item1 -> field_gallery_summary, 'string');
-              $dataObj -> youtube_id = __get_field_value($item1 -> field_youtube_id, 'string');
-              $dataObj -> thumbnail = __get_field_value($item1 -> field_thumbnail, 'image', array('imagestyle' => $attributes['imagestyle'], 'class' => $attributes['class']));
-              $dataObj -> gallery_type = __get_field_value($item1 -> field_gallery_type, 'string');
-
-              if ($dataObj -> gallery_type == 'youtube') {
-                $dataObj -> detail_html = '<iframe class="youtube-player" type="text/html"' . ($attributes['width'] ? ' width="' . $attributes['width'] . '"' : '') . '' . ($attributes['height'] ? ' height="' . $attributes['width'] . '"' : '') . ' src="//www.youtube.com/embed/' . $dataObj -> youtube_id . '?enablejsapi=1&rel=0" allowfullscreen frameborder="0"></iframe>';
-                $dataObj -> type = 'video';
-              } else {
-
-                $file_type = __get_field_value($item1 -> field_media, 'file_type');
-                $dataObj -> gallery_type = $file_type;
-                switch($file_type) {
-                  case 'image' :
-                  $dataObj -> detail_html = __get_field_value($item1 -> field_media, 'image', array('imagestyle' => $attributes['imagestyle2']));
-                  $dataObj -> type = '';
-                  break;
-                  case 'video' :
-                  $dataObj -> detail_html = '<video controls><source src="' . __get_field_value($item1 -> field_media, 'file_url') . '"></video>';
-                  $dataObj -> type = 'video';
-                  break;
-                  default :
-                  $dataObj -> detail_html = '';
-                  break;
-                }
-
-              }
-
-              $arr[] = $dataObj;
-              break;
-              case 'field_sports' :
-              $dataObj = new stdClass();
-              $taxonomy_term = $item1 -> field_sport['und'][0]['taxonomy_term'];
-              if ($taxonomy_term) {
-                $dataObj -> id = $taxonomy_term -> tid;
-                $dataObj -> title = $taxonomy_term -> name;
-              } else {
-                $dataObj -> id = 0;
-                $dataObj -> title = '';
-              }
-
-              $dataObj -> show_tab = __get_field_value($item1 -> field_show_tab, 'integer');
-              $dataObj -> body = __get_field_value($item1 -> field_sport_body, 'string');
-              $dataObj -> show_table = __get_field_value($item1 -> field_show_table, 'integer');
-
-              if ($dataObj -> show_table) {
-                $dataObj -> table = __get_field_value($item1 -> field_event_locations, 'collection');
-              } else {
-                $dataObj -> table = '';
-              }
-
-              if ($dataObj -> show_tab) {
-                $arr[] = $dataObj;
-              }
-
-              break;
-              case 'field_product_information' :
-              $dataObj = new stdClass();
-              $dataObj -> average = __get_field_value($item1 -> field_average_composition, 'string');
-              $dataObj -> per100g = __get_field_value($item1 -> field_per_100g, 'string');
-              $dataObj -> perserving30g = __get_field_value($item1 -> field_per_serving_30g, 'string');
-
-              $arr[] = $dataObj;
-              break;
-
-              case 'field_privacy_collection' :
-              $dataObj = new stdClass();
-              $dataObj -> title = __get_field_value($item1 -> field_privacy_tittle, 'string');
-              $dataObj -> content = __get_field_value($item1 -> field_privacy_content, 'string');
-
-              $arr[] = $dataObj;
-              break;
-
-              case 'field_event_locations' :
-              $dataObj = new stdClass();
-              $dataObj -> date = __get_field_value($item1 -> field_location_date, 'string');
-                  //'Oct 28';
-              $dataObj -> date_end = __get_field_value($item1 -> field_location_date_end, 'string');
-                  //'Oct 28';
-              $dataObj -> time = __get_field_value($item1 -> field_location_time, 'string');
-                  //'7:00am - 6:00pm';
-              $dataObj -> city = __get_field_value($item1 -> field_location_city, 'string');
-                  //'Kuala Lumpur';
-              $dataObj -> venue = __get_field_value($item1 -> field_location_venue, 'string');
-                  //'Donec non libero id augue 1';
-              $dataObj -> contact = __get_field_value($item1 -> field_location_contact, 'string');
-                  //'John Yang - 019 506 2802';
-              $dataObj -> lat = __get_field_value($item1 -> field_location_latitude, 'string');
-                  //'0';
-              $dataObj -> long = __get_field_value($item1 -> field_location_longitude, 'string');
-                  //'0';
-              $dataObj -> title = __get_field_value($item1 -> field_localtion_title, 'string');
-              $dataObj -> address = __get_field_value($item1 -> field_location_address, 'string');
-                  // print '<pre>';
-                  // print_r($dataObj);
-                  // print '</pre>';
-              $arr[] = $dataObj;
-              break;
-              case 'field_registration_event_type' :
-              $dataObj = new stdClass();
-              $dataObj -> solo = __get_field_value($item1 -> field_check_to_enable, 'integer');
-              $dataObj -> team = __get_field_value($item1 -> field_check_to_enable_team_optio, 'integer');
-              $dataObj -> family = __get_field_value($item1 -> field_check_to_enable_family_opt, 'integer');
-              $arr[] = $dataObj;
-              break;
-              case 'field_segments':
-              $dataObj = new stdClass();
-              $dataObj -> title = __get_field_value($item1 -> field_segment_title, 'string');
-              $dataObj -> sub_title = __get_field_value($item1 -> field_segment_sub_title, 'string');
-              $dataObj -> summary = __get_field_value($item1 -> field_segment_summary, 'string');
-              $dataObj -> image_url = __get_field_value($item1 -> field_segment_image, 'file_url');
-              $dataObj -> icon_url = __get_field_value($item1 -> field_segment_icon, 'file_url');
-              $dataObj -> detail_link = __get_field_value($item1 -> field_segment_detail, 'node');
-              $dataObj -> bg = __get_field_value($item1 -> field_segment_background, 'string');
-              $arr[] = $dataObj;
-              break;
-              case 'field_sub_segments':
-              $dataObj = new stdClass();
-              $dataObj -> sub_title = __get_field_value($item1 -> field_sub_segment_title, 'string');
-              $dataObj -> icon_url = __get_field_value($item1 -> field_sub_segment_icon, 'file_url');
-              $dataObj -> image_url = __get_field_value($item1 -> field_sub_segment_image, 'file_url');
-              $dataObj -> ref_product = __get_field_value($item1 -> field_ref_product, 'node');
-              $dataObj -> sub_segment_tabs = __get_field_value($item1 -> field_sub_segment_tabs, 'collection');
-              $arr[] = $dataObj;
-              break;
-              case 'field_sub_segment_tabs':
-              $dataObj = new stdClass();
-              $dataObj -> sub_segment_tab_name = __get_field_value($item1 -> field_sub_segment_tab_name, 'string');
-              $dataObj -> sub_segment_tab_content = __get_field_value($item1 -> field_sub_segment_tab_content, 'string');
-              $arr[] = $dataObj;
-              break;
-              case 'field_product_segments':
-              $dataObj = new stdClass();
-              $dataObj -> title = __get_field_value($item1 -> field_product_segment_title, 'string');
-              $dataObj -> sub_title = __get_field_value($item1 -> field_product_segment_sub_title, 'string');
-              $dataObj -> caption = __get_field_value($item1 -> field_product_segment_caption, 'string');
-              $dataObj -> image_url = __get_field_value($item1 -> field_product_segment_image, 'file_url');
-              $dataObj -> detail_link = __get_field_value($item1 -> field_product_segment_detail, 'node');
-              $arr[] = $dataObj;
-              break;
-              case 'field_about_segments':
-              $dataObj = new stdClass();
-              $dataObj -> title = __get_field_value($item1 -> field_about_segment_title, 'string');
-              $dataObj -> image_url = __get_field_value($item1 -> field_about_segment_image, 'file_url');
-              $dataObj -> segment_tabs = __get_field_value($item1 -> field_about_segment_tabs, 'collection');
-              $arr[] = $dataObj;
-              break;
-              case 'field_about_segment_tabs':
-              $dataObj = new stdClass();
-              $dataObj -> title = __get_field_value($item1 -> field_about_segment_tab_title, 'string');
-              $dataObj -> image_url = __get_field_value($item1 -> field_about_segment_tab_image, 'file_url');
-              $dataObj -> content = __get_field_value($item1 -> field_about_segment_tab_content, 'string');
-              $arr[] = $dataObj;
-              break;
-              case 'field_home_page_headline':
-              $dataObj = new stdClass();
-              $dataObj -> title = __get_field_value($item1 -> field_title, 'string');
-              $dataObj -> image_url = __get_field_value($item1 -> field_image, 'file_url');
-              $dataObj -> detail_link = url(__get_field_value($item1 -> field_headline_link, 'string'));
-              $arr[] = $dataObj;
-              break;
-              case 'field_home_page_news':
-              $dataObj = new stdClass();
-              $dataObj -> title = __get_field_value($item1 -> field_title, 'string');
-              $dataObj -> image_url = __get_field_value($item1 -> field_image, 'file_url');
-              $dataObj -> summary = __get_field_value($item1 -> field_summary, 'string');
-              $dataObj -> detail_link = url(__get_field_value($item1 -> field_link, 'string'));
-              $arr[] = $dataObj;
-              break;
-              case 'field_home_page_social_feed':
-              $dataObj = new stdClass();
-              $dataObj -> title = __get_field_value($item1 -> field_title, 'string');
-              $dataObj -> image_url = __get_field_value($item1 -> field_image, 'file_url');
-              $dataObj -> summary = __get_field_value($item1 -> field_summary, 'string');
-              $dataObj -> detail_link = url(__get_field_value($item1 -> field_link, 'string'));
-              $dataObj -> youtube_id = get_youtube_id_from_url(__get_field_value($item1 -> field_video_link, 'string'));
-              $dataObj -> group_name = ucwords(__get_field_value($item1 -> field_social_feed_type, 'string'));
-              $dataObj -> type = $dataObj -> group_name;
-              $dataObj -> group_image_url = __get_field_value($item1 -> field_icon, 'file_url');
-              $dataObj -> created = '';
-              $arr[] = $dataObj;
-              break;
-              case 'field_picky_eater_headline':
-              $dataObj = new stdClass();
-              $dataObj -> image_url = __get_field_value($item1 -> field_image, 'file_url');
-              $dataObj -> icon_url = __get_field_value($item1 -> field_icon, 'file_url');
-              $dataObj -> summary = __get_field_value($item1 -> field_summary, 'string');
-              $dataObj -> type = __get_field_value($item1 -> field_picky_eater_headline_type, 'string');
-              $arr[] = $dataObj;
-              break;
-              case 'field_picky_eater_nutrition_feed':
-              $dataObj = new stdClass();
-              $dataObj -> item_image_url = __get_field_value($item1 -> field_item_image, 'file_url');
-              $dataObj -> item_mobile_image_url = __get_field_value($item1 -> field_item_image_mobile, 'file_url');
-              $dataObj -> content_image_url = __get_field_value($item1 -> field_image, 'file_url');
-              $dataObj -> content_mobile_image_url = __get_field_value($item1 -> field_image_mobile, 'file_url');
-              $dataObj -> head_teaser = __get_field_value($item1 -> field_head_summary, 'string');
-              $dataObj -> user_guide = __get_field_value($item1 -> field_user_guide, 'string');
-              $dataObj -> product_guide = __get_field_value($item1 -> field_product_guide, 'string');
-              $dataObj -> type = __get_field_value($item1 -> field_nutrition_type, 'string');
-              $dataObj -> rotate_deg = __get_field_value($item1 -> field_rotate_degree, 'string');
-              $arr[] = $dataObj;
-              break;
-            }
-
-          }
-
-        }
-        endif;
-        return $arr;
-        break;
-        case 'files' :
-        $arr = array();
-
-        if ($field && isset($field['und'])) {
-          foreach ($field['und'] as $key => $value) {
-            if (isset($value) && $value['fid']) {
-              $arr[] = $value;
-            }
+      if ($field && isset($field['und'])) {
+        foreach ($field['und'] as $key => $value) {
+          if (isset($value) && $value['fid']) {
+            $arr[] = $value;
           }
         }
-
-        return $arr;
-        break;
-        case 'string' :
-        if (!is_null($field) && isset($field['und'][0]['value'])) {
-          return $field['und'][0]['value'];
-        } else {
-          return '';
-        }
-        break;
-        case 'integer' :
-        if (!is_null($field) && isset($field['und'][0]['value'])) {
-          return (int)$field['und'][0]['value'];
-        } else {
-          return 0;
-        }
-        break;
-        case 'image' :
-        if (!empty($field['und'][0]['uri'])) {
-          if (isset($attributes['imagestyle'])) {
-            $imagestyle = $attributes['imagestyle'];
-          } else {
-            $imagestyle = 'full_size';
-          }
-
-          if (isset($attributes['class'])) {
-            $class = $attributes['class'];
-          } else {
-            $class = '';
-          }
-
-          $image = '<img src="' . image_style_url($imagestyle, $field['und'][0]['uri']) . '" class="' . $class . '">';
-        } else {
-          $image = '';
-        }
-        return $image;
-        break;
-        case 'node' :
-        if(count($field)) {
-          $result = array();
-          foreach($field['und'] as $field_item) {
-            //pr($field_item);
-            $obj = $field_item;
-            $tmp = new stdClass();
-            $tmp -> nid = $obj['nid'];
-            $tmp -> link = url('node/' . $obj['nid']);
-
-            $node_tmp = node_load($obj['nid']);
-            $tmp -> title = $node_tmp -> title;
-            $tmp -> summary = isset($node_tmp -> body['und'][0]['safe_summary']) ? $node_tmp -> body['und'][0]['safe_summary'] : '';
-            $node_type = $node_tmp->type;
-
-            switch($node_type) {
-              case 'product_detail':
-                //pr($node_tmp);
-                $tmp -> sub_title = __get_field_value($node_tmp->field_product_sub_title, 'string');
-                $tmp -> image_url = __get_field_value($node_tmp->field_product_image, 'file_url');
-                $tmp -> summary = __get_field_value($node_tmp->field_product_summary, 'string');
-              break;
-              case 'event_detail':
-                $tmp -> event_title = __get_field_value($node_tmp->field_event_title, 'string');
-                $tmp -> image = __get_field_value($node_tmp->field_image, 'image', array('imagestyle' => 'event_top_thumbnail'));
-                $tmp -> detail_link = url('node/' . $obj['nid']);
-              break;
-              default:
-            }
-            $result[] = $tmp;
-          }
-        }else{
-          $result = array();
-        }
-
-        return $result;
-        break;
-        default :
-        if (isset($field['und'][0]['value'])) {
-          return $field['und'][0]['value'];
-        } else {
-          return '';
-        }
-        break;
       }
-    }
 
+      return $arr;
+      break;
+      case 'string' :
+      if (!is_null($field) && isset($field['und'][0]['value'])) {
+        return $field['und'][0]['value'];
+      } else {
+        return '';
+      }
+      break;
+      case 'integer' :
+      if (!is_null($field) && isset($field['und'][0]['value'])) {
+        return (int)$field['und'][0]['value'];
+      } else {
+        return 0;
+      }
+      break;
+      case 'image' :
+      if (!empty($field['und'][0]['uri'])) {
+        if (isset($attributes['imagestyle'])) {
+          $imagestyle = $attributes['imagestyle'];
+        } else {
+          $imagestyle = 'full_size';
+        }
+
+        if (isset($attributes['class'])) {
+          $class = $attributes['class'];
+        } else {
+          $class = '';
+        }
+
+        $image = '<img src="' . image_style_url($imagestyle, $field['und'][0]['uri']) . '" class="' . $class . '">';
+      } else {
+        $image = '';
+      }
+      return $image;
+      break;
+      case 'node' :
+      if(count($field)) {
+        $result = array();
+        foreach($field['und'] as $field_item) {
+            //pr($field_item);
+          $obj = $field_item;
+          $tmp = new stdClass();
+          $tmp -> nid = $obj['nid'];
+          $tmp -> link = url('node/' . $obj['nid']);
+
+          $node_tmp = node_load($obj['nid']);
+          $tmp -> title = $node_tmp -> title;
+          $tmp -> summary = isset($node_tmp -> body['und'][0]['safe_summary']) ? $node_tmp -> body['und'][0]['safe_summary'] : '';
+          $node_type = $node_tmp->type;
+
+          switch($node_type) {
+            case 'product_detail':
+                //pr($node_tmp);
+            $tmp -> sub_title = __get_field_value($node_tmp->field_product_sub_title, 'string');
+            $tmp -> image_url = __get_field_value($node_tmp->field_product_image, 'file_url');
+            $tmp -> summary = __get_field_value($node_tmp->field_product_summary, 'string');
+            break;
+            case 'event_detail':
+            $tmp -> event_title = __get_field_value($node_tmp->field_event_title, 'string');
+            $tmp -> image = __get_field_value($node_tmp->field_image, 'image', array('imagestyle' => 'event_top_thumbnail'));
+            $tmp -> detail_link = url('node/' . $obj['nid']);
+            break;
+            default:
+          }
+          $result[] = $tmp;
+        }
+      }else{
+        $result = array();
+      }
+
+      return $result;
+      break;
+      default :
+      if (isset($field['und'][0]['value'])) {
+        return $field['und'][0]['value'];
+      } else {
+        return '';
+      }
+      break;
+    }
   }
+
 
 
   function __removeSpecialCharacters($str) {
@@ -380,18 +130,18 @@ if (!function_exists('__get_field_value')) {
 /**
  * Get youtube video ID from youtube url.
  */
-if( !function_exists('get_youtube_id_from_url') ) {
-  function get_youtube_id_from_url( $url ) {
-    $url_info = parse_url($url);
-    $result = '';
-    if(isset($url_info['query'])) {
-      $query = array();
-      parse_str($url_info['query'], $query);
-      $result = $query['v'];
-    }
-    return $result;
+
+function get_youtube_id_from_url( $url ) {
+  $url_info = parse_url($url);
+  $result = '';
+  if(isset($url_info['query'])) {
+    $query = array();
+    parse_str($url_info['query'], $query);
+    $result = $query['v'];
   }
+  return $result;
 }
+
 
 /**
  *
@@ -409,23 +159,23 @@ if( !function_exists('get_youtube_id_from_url') ) {
  *
  * (PHP 5 >= 5.3.0)
  */
-if( !function_exists('__datediff') ) {
-  function __datediff($date_part, $date_start, $date_end = ''){
 
-    if( is_integer($date_start) )
-      $date_start = date_create(date('Y-m-d H:i:s', $date_start));
+function __datediff($date_part, $date_start, $date_end = ''){
 
-    if( empty($date_end) )
-      $date_end = date_create(date('Y-m-d H:i:s'));
+  if( is_integer($date_start) )
+    $date_start = date_create(date('Y-m-d H:i:s', $date_start));
 
-    if( is_integer($date_end) )
-      $date_end = date_create(date('Y-m-d H:i:s', $date_end));
+  if( empty($date_end) )
+    $date_end = date_create(date('Y-m-d H:i:s'));
 
-    $diff = date_diff($date_start, $date_end);
+  if( is_integer($date_end) )
+    $date_end = date_create(date('Y-m-d H:i:s', $date_end));
 
-    return intval($diff->format("%{$date_part}"));
-  }
+  $diff = date_diff($date_start, $date_end);
+
+  return intval($diff->format("%{$date_part}"));
 }
+
 
 /**
  * Limit a string within max length.
@@ -460,14 +210,12 @@ function __limit_string( $string, $max_length, $ext_string = '' ) {
 }
 
 
-if ( ! function_exists( '__get_data' ) ) :
-  function __get_data($data){
-    if(!empty($data)){
-      return $data;
-    }
-    return "";
+function __get_data($data){
+  if(!empty($data)){
+    return $data;
   }
-  endif;
+  return "";
+}
 
 
 /**
@@ -507,15 +255,15 @@ function __limit_string_without_space( $string, $max_length ) {
  *
  * @return  encoded_string(string)
  */
-if( ! function_exists("__encode_password") ) :
-  function __encode_password($data)
+
+function __encode_password($data)
 {
     // First we convert the array to a json string
   $encoded_str = md5($data);
 
   return $encoded_str;
 }
-endif;
+
 
 
 /**
@@ -525,8 +273,7 @@ endif;
  *
  * @return  object
  */
-if( ! function_exists("__array2object") ) :
-  function __array2object($array)
+function __array2object($array)
 {
     // First we convert the array to a json string
   $json = json_encode($array);
@@ -536,7 +283,6 @@ if( ! function_exists("__array2object") ) :
 
   return $object;
 }
-endif;
 
 
 /**
@@ -546,8 +292,7 @@ endif;
  *
  * @return  picture_url(string)
  */
-if( ! function_exists("__drupal_get_picture_by_fid") ) :
-  function __drupal_get_picture_by_fid($fid, $default_icon = '', $image_style = '')
+function __drupal_get_picture_by_fid($fid, $default_icon = '', $image_style = '')
 {
   global $base_url;
   $picture_url = '';
@@ -572,7 +317,7 @@ if( ! function_exists("__drupal_get_picture_by_fid") ) :
 
   return $picture_url;
 }
-endif;
+
 
 
 /**
@@ -582,8 +327,8 @@ endif;
  *
  * @return  array
  */
-if( ! function_exists("__object2array") ) :
-  function __object2array($object)
+
+function __object2array($object)
 {
     // First we convert the object into a json string
   $json = json_encode($object);
@@ -593,7 +338,7 @@ if( ! function_exists("__object2array") ) :
 
   return $array;
 }
-endif;
+
 
 /**
  * Filter an array to get only needed fields.
@@ -601,122 +346,103 @@ endif;
  * $param array $source The array source
  * $param array $allow_fields The list of field need to retrieve.
  */
-if ( ! function_exists( '__filter_array' ) ) :
-  function __filter_array( $array_source, $allow_fields ){
-    $result = array();
-    foreach( $allow_fields as $key => $value ){
-      $result[$value] = $array_source[$value];
-    }
-    return $result;
+
+function __filter_array( $array_source, $allow_fields ){
+  $result = array();
+  foreach( $allow_fields as $key => $value ){
+    $result[$value] = $array_source[$value];
   }
-  endif;
+  return $result;
+}
 
 /**
  *
  */
-if( !function_exists('__stripslashes_recursive') ) :
-  function __stripslashes_recursive($value) {
-    if ( is_array($value) ) {
-      $value = array_map('stripslashes_recursive', $value);
-    } elseif ( is_object($value) ) {
-      $vars = get_object_vars( $value );
-      foreach ($vars as $key=>$data) {
-        $value->{$key} = stripslashes_recursive( $data );
-      }
-    } elseif ( is_string( $value ) ) {
-      $value = stripslashes($value);
+function __stripslashes_recursive($value) {
+  if ( is_array($value) ) {
+    $value = array_map('stripslashes_recursive', $value);
+  } elseif ( is_object($value) ) {
+    $vars = get_object_vars( $value );
+    foreach ($vars as $key=>$data) {
+      $value->{$key} = stripslashes_recursive( $data );
     }
-
-    return $value;
+  } elseif ( is_string( $value ) ) {
+    $value = stripslashes($value);
   }
-  endif;
 
-  if ( ! function_exists( '__strip_tags_array' ) ) :
-    function __strip_tags_array( $params = array() ){
-      if(is_array( $params ) ) {
-        foreach( $params as $key => $value ){
-          if( is_array($value) ){
-            $value = strip_tags_array( $value );
-          }
-          else {
-            $value = strip_tags( $value );
-          }
+  return $value;
+}
 
-          $params[ $key ] = $value;
-        }
+function __strip_tags_array( $params = array() ){
+  if(is_array( $params ) ) {
+    foreach( $params as $key => $value ){
+      if( is_array($value) ){
+        $value = strip_tags_array( $value );
+      }
+      else {
+        $value = strip_tags( $value );
       }
 
-      return $params;
+      $params[ $key ] = $value;
     }
-    endif;
+  }
+
+  return $params;
+}
 
 
 /**
  * Remove empty element.
  */
-if ( ! function_exists( '__strip_empty_array' ) ) :
-  function __strip_empty_array( $params = array(), $except_numeric = 1, $trim_array = 1 ) {
+function __strip_empty_array( $params = array(), $except_numeric = 1, $trim_array = 1 ) {
   //Remove empty object.
-    if(is_array($params)){
+  if(is_array($params)){
     //Trim parameters.
-      if($trim_array)$params = trim_array($params);
+    if($trim_array)$params = trim_array($params);
 
-      foreach($params as $key => $value){
-        if(is_array($value)){
-          $value = strip_empty_array($value,$except_numeric,0);
-        }
-
-        if(empty($value)&&(!is_numeric($value)||!$except_numeric))
-          unset($params[$key]);
+    foreach($params as $key => $value){
+      if(is_array($value)){
+        $value = strip_empty_array($value,$except_numeric,0);
       }
-    }
 
-    return $params;
+      if(empty($value)&&(!is_numeric($value)||!$except_numeric))
+        unset($params[$key]);
+    }
   }
 
-  endif;
+  return $params;
+}
 
 
-
-  if ( ! function_exists( '__trim_array' ) ) :
-    function __trim_array($params = array()){
-      if(is_array($params)){
-        foreach($params as $key => $value){
-          if(is_array($value)){
-            $value = trim_array($value);
-          }elseif(is_string($value)){
-            $value = trim($value);
-          }
-
-          $params[$key] = $value;
-        }
+function __trim_array($params = array()){
+  if(is_array($params)){
+    foreach($params as $key => $value){
+      if(is_array($value)){
+        $value = trim_array($value);
+      }elseif(is_string($value)){
+        $value = trim($value);
       }
-      return $params;
+
+      $params[$key] = $value;
     }
-    endif;
+  }
+  return $params;
+}
 
 /**
  * Remove double white space
  */
-if ( ! function_exists( '__trim_double_white_space' ) ) :
-  function __trim_double_white_space( $param ) {
+function __trim_double_white_space( $param ) {
   //return preg_replace('/\s\s+/', ' ', $param);
-    return preg_replace('/[ \t\r\n][ \t\r\n]+/', ' ', $param);
-  }
-  endif;
+  return preg_replace('/[ \t\r\n][ \t\r\n]+/', ' ', $param);
+}
 
-
-  if ( ! function_exists( '__trim_complete' ) ) :
 
 //Remove double white space and trim.
-    function __trim_complete($param){
-      return trim(trim_double_white_space($param));
-    }
+function __trim_complete($param){
+  return trim(trim_double_white_space($param));
+}
 
-    endif;
-
-
-    if ( ! function_exists( '__trim_complete_array' ) ) :
 //trim_complete_array
 /**
 * Replace double white space and trim for all value of an array.
@@ -735,7 +461,6 @@ function __trim_complete_array($params = array()){
   }
   return $params;
 }
-endif;
 
 
 /*
@@ -776,10 +501,10 @@ function __is_valid_date($date) {
         } else {
           return FALSE;
         }
-    }else {
+      }else {
         return FALSE;    // more or less 10 chars
+      }
     }
-}
 //endif;
 
 
@@ -788,192 +513,182 @@ function __is_valid_date($date) {
  * Validate domain
  * @author Võ Thanh Lâm
  */
-if( ! function_exists( "__is_valid_dnsrr" ) ) {
-  function __is_valid_dnsrr( $email ) {
-    if( ! function_exists('checkdnsrr') )
-      return true;
+function __is_valid_dnsrr( $email ) {
+  if( ! function_exists('checkdnsrr') )
+    return true;
 
-    list( $email_username, $email_domain ) = split( '@', $email );
-    if( checkdnsrr( $email_domain, "MX" ) === false )
-      return false;
-    else
-      return true;
-  }}
+  list( $email_username, $email_domain ) = split( '@', $email );
+  if( checkdnsrr( $email_domain, "MX" ) === false )
+    return false;
+  else
+    return true;
+}
 
 
 /**
  * Validate upload file
  * @author Võ Thanh Lâm
  */
-if( ! function_exists("__is_valid_upload") ) {
-  function __is_valid_upload( $file, $max_size, $allow_types = array() ) {
-    if( empty($file) )
-      return false;
+function __is_valid_upload( $file, $max_size, $allow_types = array() ) {
+  if( empty($file) )
+    return false;
 
-    if( $file["error"] )
-      return false;
+  if( $file["error"] )
+    return false;
 
-    if( ! in_array( $file['type'], $allow_types ) )
-      return false;
+  if( ! in_array( $file['type'], $allow_types ) )
+    return false;
 
-    if( $file["size"] > $max_size ){
-      return false;
-    }
+  if( $file["size"] > $max_size ){
+    return false;
+  }
 
-    return true;
-  }}
+  return true;
+}
 
 /**
  * Get data from a url by using GET method
  * @author Võ Thanh Lâm
  */
-if( !function_exists('__curl_get') ) {
-  function __curl_get($url, $time_out = 5) {
-    $ch = curl_init();
-    $timeout = 60;
-    curl_setopt($ch,CURLOPT_URL,$url);
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-    curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
-    $data = curl_exec($ch);
-    curl_close($ch);
-    return $data;
-  }}
+function __curl_get($url, $time_out = 5) {
+  $ch = curl_init();
+  $timeout = 60;
+  curl_setopt($ch,CURLOPT_URL,$url);
+  curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+  curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+  $data = curl_exec($ch);
+  curl_close($ch);
+  return $data;
+}
 
 
 /**
  * Get data from a url by using POST method
  * @author Võ Thanh Lâm
  */
-if( !function_exists('__curl_post') ) {
-  function __curl_post($url, $params) {
-    $post_data = '';
-    $sep = '';
-    foreach($params as $name => $value) {
-      $post_data .= $sep.urlencode($name).'='.urlencode($value);
-      $sep = '&';
-    }
-    $ch = curl_init();
-    $timeout = 5;
-    curl_setopt($ch,CURLOPT_URL,$url);
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-    curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
-    curl_setopt($ch,CURLOPT_POSTFIELDS,  $post_data);
-    curl_setopt($ch,CURLOPT_POST, 1);
-    $data = curl_exec($ch);
-    curl_close($ch);
-    return $data;
+function __curl_post($url, $params) {
+  $post_data = '';
+  $sep = '';
+  foreach($params as $name => $value) {
+    $post_data .= $sep.urlencode($name).'='.urlencode($value);
+    $sep = '&';
   }
+  $ch = curl_init();
+  $timeout = 5;
+  curl_setopt($ch,CURLOPT_URL,$url);
+  curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+  curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+  curl_setopt($ch,CURLOPT_POSTFIELDS,  $post_data);
+  curl_setopt($ch,CURLOPT_POST, 1);
+  $data = curl_exec($ch);
+  curl_close($ch);
+  return $data;
 }
+
 
 /**
  * Get twitter latest feeds
  * @author Võ Thanh Lâm
  */
-if( !function_exists('__get_tweets') ){
-  function __get_tweets($username, $count = 10) {
-    $url = 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name='.$username.'&count='.$count;
-    return json_decode(curl_get($url, 60));
-  }}
+function __get_tweets($username, $count = 10) {
+  $url = 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name='.$username.'&count='.$count;
+  return json_decode(curl_get($url, 60));
+}
 
 
 /**
  * Detect url in text
  * @author Võ Thanh Lâm
  */
-if( !function_exists('__detect_url') ){
-  function __detect_url( $text ){
+function __detect_url( $text ){
   // The Regular Expression filter
-    $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+  $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
 
   // Check if there is a url in the text
-    if( preg_match($reg_exUrl, $text, $url) )
-      return $url;
-    else
-      return;
-  }}
+  if( preg_match($reg_exUrl, $text, $url) )
+    return $url;
+  else
+    return;
+}
 
 
 /**
  * Get current url
  * @author Võ Thanh Lâm
  */
-if( !function_exists('__get_current_url') ){
-  function __get_current_url() {
-    $pageURL = 'http';
-    if ($_SERVER["HTTPS"] == "on") {
-      $pageURL .= "s";
-    }
-    $pageURL .= "://";
-    if ($_SERVER["SERVER_PORT"] != "80") {
-      $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-    } else {
-      $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-    }
-
-    return $pageURL;
+function __get_current_url() {
+  $pageURL = 'http';
+  if ($_SERVER["HTTPS"] == "on") {
+    $pageURL .= "s";
   }
+  $pageURL .= "://";
+  if ($_SERVER["SERVER_PORT"] != "80") {
+    $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+  } else {
+    $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+  }
+
+  return $pageURL;
 }
+
 
 
 /**
  * Detect and generate html hyperlink tag.
  * @author Võ Thanh Lâm
  */
-if( !function_exists('__add_hyperlink') ){
-  function __add_hyperlink( $text ) {
+function __add_hyperlink( $text ) {
   // The Regular Expression filter
-    $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+  $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
 
   // Check if there is a url in the text
-    if(preg_match($reg_exUrl, $text, $url))
+  if(preg_match($reg_exUrl, $text, $url))
      // make the urls hyper links
-      return preg_replace($reg_exUrl, '<a href="'.$url[0].'" target="_blank">'.$url[0].'</a> ', $text);
-    else
-      return $text;
-  }}
+    return preg_replace($reg_exUrl, '<a href="'.$url[0].'" target="_blank">'.$url[0].'</a> ', $text);
+  else
+    return $text;
+}
 
 
 /**
  * Get a file content.
  **/
-if (!function_exists("__read_file")) {
-  function __read_file($path) {
-    global $root_doc;
-    if (file_exists($path)) {
-      try {
-        $fr  = fopen($path, 'r');
-        $str = "";
-        while (!feof($fr)) {
-          $str .= fread($fr, 4096);
-        }
-        fclose($fr);
-        return $str;
+function __read_file($path) {
+  global $root_doc;
+  if (file_exists($path)) {
+    try {
+      $fr  = fopen($path, 'r');
+      $str = "";
+      while (!feof($fr)) {
+        $str .= fread($fr, 4096);
       }
-      catch (Exception $e) {
-        return false;
-      }
-    } else {
+      fclose($fr);
+      return $str;
+    }
+    catch (Exception $e) {
       return false;
     }
+  } else {
     return false;
   }
+  return false;
 }
+
 
 
 /**
  * Create date stromg fpr datestring format YYYYMMDD
  **/
-if (!function_exists("__create_date_time_obj")) {
-  function __create_date_time_obj($date_time_int) {
-    $day = substr($date_time_int, 6 , 2);
-    $month = substr($date_time_int, 4 , 2);
-    $year = substr($date_time_int, 0 , 4);
+function __create_date_time_obj($date_time_int) {
+  $day = substr($date_time_int, 6 , 2);
+  $month = substr($date_time_int, 4 , 2);
+  $year = substr($date_time_int, 0 , 4);
 
     $date_obj = $year .'-'. $month.'-'.$day;//date('Y-m-d', $year .'-'. $month.'-'.$day);
 
     return $date_obj;
   }
-}
+
 
 /**
  * Encode date from datetime format YYYYMMDD
@@ -984,14 +699,12 @@ if (!function_exists("__create_date_time_obj")) {
  *        - month (int)
  *        - year (int)
  **/
-if (!function_exists("__encode_dob")) {
-  function __encode_dob($date_time_obj) {
-    $date_str = $date_time_obj["year"] . sprintf("%02d", $date_time_obj["month"]). sprintf("%02d", $date_time_obj["day"]);
 
-
-    return $date_str;
-  }
+function __encode_dob($date_time_obj) {
+  $date_str = $date_time_obj["year"] . sprintf("%02d", $date_time_obj["month"]). sprintf("%02d", $date_time_obj["day"]);
+  return $date_str;
 }
+
 
 /**
  * Decode date from datetime format YYYYMMDD
@@ -1002,226 +715,223 @@ if (!function_exists("__encode_dob")) {
  *        - month (int)
  *        - year (int)
  **/
-if (!function_exists("__decode_dob")) {
-  function __decode_dob($date_time_int) {
-    $date_obj = array();
+function __decode_dob($date_time_int) {
+  $date_obj = array();
 
-    $day = $date_time_int % 100;
+  $day = $date_time_int % 100;
 
-    $date_temp = $date_time_int / 100;
-    $month = $date_temp % 100;
+  $date_temp = $date_time_int / 100;
+  $month = $date_temp % 100;
 
-    $date_temp = (int)($date_temp / 100);
-    $year = $date_temp;
+  $date_temp = (int)($date_temp / 100);
+  $year = $date_temp;
 
-    if(isset($day)  && isset($month) && isset($year)){
-      $date_obj = array(
-        "day" => sprintf("%02d", $day),
-        "month" => sprintf("%02d", $month),
-        "year" => $year
-        );
-    }
-
-    return $date_obj;
+  if(isset($day)  && isset($month) && isset($year)){
+    $date_obj = array(
+      "day" => sprintf("%02d", $day),
+      "month" => sprintf("%02d", $month),
+      "year" => $year
+      );
   }
+
+  return $date_obj;
 }
+
 /**
  * Write fie if directory is not exists create new.
  */
-if(!function_exists("__write_file")){
-  function __write_file($string, $file_path){
-    global $root_doc;
+function __write_file($string, $file_path){
+  global $root_doc;
 
-    $pathinfo = pathinfo( $file_path );
-    if( empty($pathinfo['dirname']) )
-      return false;
+  $pathinfo = pathinfo( $file_path );
+  if( empty($pathinfo['dirname']) )
+    return false;
 
-    if( !file_exists($pathinfo['dirname']) )
-      mkdir( $pathinfo['dirname'], 0775, true );
+  if( !file_exists($pathinfo['dirname']) )
+    mkdir( $pathinfo['dirname'], 0775, true );
 
-    try {
-      $ourFileHandle = fopen($file_path, 'w');
-      fwrite($ourFileHandle,$string);
-      fclose($ourFileHandle);
-    } catch (Exception $e) {
-      return false;
-    }
-
-    return true;
+  try {
+    $ourFileHandle = fopen($file_path, 'w');
+    fwrite($ourFileHandle,$string);
+    fclose($ourFileHandle);
+  } catch (Exception $e) {
+    return false;
   }
+
+  return true;
 }
+
 
 /**
  * Remove Vietnamese accents
  * @author Lâm
  */
-if( !function_exists('__remove_accents') ) {
-  function __remove_accents($string) {
-    if ( !preg_match('/[\x80-\xff]/', $string) )
-      return $string;
+function __remove_accents($string) {
+  if ( !preg_match('/[\x80-\xff]/', $string) )
+    return $string;
 
-    if (seems_utf8($string)) {
-      $chars = array(
+  if (seems_utf8($string)) {
+    $chars = array(
     // Decompositions for Latin-1 Supplement
-        chr(194).chr(170) => 'a', chr(194).chr(186) => 'o',
-        chr(195).chr(128) => 'A', chr(195).chr(129) => 'A',
-        chr(195).chr(130) => 'A', chr(195).chr(131) => 'A',
-        chr(195).chr(132) => 'A', chr(195).chr(133) => 'A',
-        chr(195).chr(134) => 'AE',chr(195).chr(135) => 'C',
-        chr(195).chr(136) => 'E', chr(195).chr(137) => 'E',
-        chr(195).chr(138) => 'E', chr(195).chr(139) => 'E',
-        chr(195).chr(140) => 'I', chr(195).chr(141) => 'I',
-        chr(195).chr(142) => 'I', chr(195).chr(143) => 'I',
-        chr(195).chr(144) => 'D', chr(195).chr(145) => 'N',
-        chr(195).chr(146) => 'O', chr(195).chr(147) => 'O',
-        chr(195).chr(148) => 'O', chr(195).chr(149) => 'O',
-        chr(195).chr(150) => 'O', chr(195).chr(153) => 'U',
-        chr(195).chr(154) => 'U', chr(195).chr(155) => 'U',
-        chr(195).chr(156) => 'U', chr(195).chr(157) => 'Y',
-        chr(195).chr(158) => 'TH',chr(195).chr(159) => 's',
-        chr(195).chr(160) => 'a', chr(195).chr(161) => 'a',
-        chr(195).chr(162) => 'a', chr(195).chr(163) => 'a',
-        chr(195).chr(164) => 'a', chr(195).chr(165) => 'a',
-        chr(195).chr(166) => 'ae',chr(195).chr(167) => 'c',
-        chr(195).chr(168) => 'e', chr(195).chr(169) => 'e',
-        chr(195).chr(170) => 'e', chr(195).chr(171) => 'e',
-        chr(195).chr(172) => 'i', chr(195).chr(173) => 'i',
-        chr(195).chr(174) => 'i', chr(195).chr(175) => 'i',
-        chr(195).chr(176) => 'd', chr(195).chr(177) => 'n',
-        chr(195).chr(178) => 'o', chr(195).chr(179) => 'o',
-        chr(195).chr(180) => 'o', chr(195).chr(181) => 'o',
-        chr(195).chr(182) => 'o', chr(195).chr(184) => 'o',
-        chr(195).chr(185) => 'u', chr(195).chr(186) => 'u',
-        chr(195).chr(187) => 'u', chr(195).chr(188) => 'u',
-        chr(195).chr(189) => 'y', chr(195).chr(190) => 'th',
-        chr(195).chr(191) => 'y', chr(195).chr(152) => 'O',
+      chr(194).chr(170) => 'a', chr(194).chr(186) => 'o',
+      chr(195).chr(128) => 'A', chr(195).chr(129) => 'A',
+      chr(195).chr(130) => 'A', chr(195).chr(131) => 'A',
+      chr(195).chr(132) => 'A', chr(195).chr(133) => 'A',
+      chr(195).chr(134) => 'AE',chr(195).chr(135) => 'C',
+      chr(195).chr(136) => 'E', chr(195).chr(137) => 'E',
+      chr(195).chr(138) => 'E', chr(195).chr(139) => 'E',
+      chr(195).chr(140) => 'I', chr(195).chr(141) => 'I',
+      chr(195).chr(142) => 'I', chr(195).chr(143) => 'I',
+      chr(195).chr(144) => 'D', chr(195).chr(145) => 'N',
+      chr(195).chr(146) => 'O', chr(195).chr(147) => 'O',
+      chr(195).chr(148) => 'O', chr(195).chr(149) => 'O',
+      chr(195).chr(150) => 'O', chr(195).chr(153) => 'U',
+      chr(195).chr(154) => 'U', chr(195).chr(155) => 'U',
+      chr(195).chr(156) => 'U', chr(195).chr(157) => 'Y',
+      chr(195).chr(158) => 'TH',chr(195).chr(159) => 's',
+      chr(195).chr(160) => 'a', chr(195).chr(161) => 'a',
+      chr(195).chr(162) => 'a', chr(195).chr(163) => 'a',
+      chr(195).chr(164) => 'a', chr(195).chr(165) => 'a',
+      chr(195).chr(166) => 'ae',chr(195).chr(167) => 'c',
+      chr(195).chr(168) => 'e', chr(195).chr(169) => 'e',
+      chr(195).chr(170) => 'e', chr(195).chr(171) => 'e',
+      chr(195).chr(172) => 'i', chr(195).chr(173) => 'i',
+      chr(195).chr(174) => 'i', chr(195).chr(175) => 'i',
+      chr(195).chr(176) => 'd', chr(195).chr(177) => 'n',
+      chr(195).chr(178) => 'o', chr(195).chr(179) => 'o',
+      chr(195).chr(180) => 'o', chr(195).chr(181) => 'o',
+      chr(195).chr(182) => 'o', chr(195).chr(184) => 'o',
+      chr(195).chr(185) => 'u', chr(195).chr(186) => 'u',
+      chr(195).chr(187) => 'u', chr(195).chr(188) => 'u',
+      chr(195).chr(189) => 'y', chr(195).chr(190) => 'th',
+      chr(195).chr(191) => 'y', chr(195).chr(152) => 'O',
     // Decompositions for Latin Extended-A
-        chr(196).chr(128) => 'A', chr(196).chr(129) => 'a',
-        chr(196).chr(130) => 'A', chr(196).chr(131) => 'a',
-        chr(196).chr(132) => 'A', chr(196).chr(133) => 'a',
-        chr(196).chr(134) => 'C', chr(196).chr(135) => 'c',
-        chr(196).chr(136) => 'C', chr(196).chr(137) => 'c',
-        chr(196).chr(138) => 'C', chr(196).chr(139) => 'c',
-        chr(196).chr(140) => 'C', chr(196).chr(141) => 'c',
-        chr(196).chr(142) => 'D', chr(196).chr(143) => 'd',
-        chr(196).chr(144) => 'D', chr(196).chr(145) => 'd',
-        chr(196).chr(146) => 'E', chr(196).chr(147) => 'e',
-        chr(196).chr(148) => 'E', chr(196).chr(149) => 'e',
-        chr(196).chr(150) => 'E', chr(196).chr(151) => 'e',
-        chr(196).chr(152) => 'E', chr(196).chr(153) => 'e',
-        chr(196).chr(154) => 'E', chr(196).chr(155) => 'e',
-        chr(196).chr(156) => 'G', chr(196).chr(157) => 'g',
-        chr(196).chr(158) => 'G', chr(196).chr(159) => 'g',
-        chr(196).chr(160) => 'G', chr(196).chr(161) => 'g',
-        chr(196).chr(162) => 'G', chr(196).chr(163) => 'g',
-        chr(196).chr(164) => 'H', chr(196).chr(165) => 'h',
-        chr(196).chr(166) => 'H', chr(196).chr(167) => 'h',
-        chr(196).chr(168) => 'I', chr(196).chr(169) => 'i',
-        chr(196).chr(170) => 'I', chr(196).chr(171) => 'i',
-        chr(196).chr(172) => 'I', chr(196).chr(173) => 'i',
-        chr(196).chr(174) => 'I', chr(196).chr(175) => 'i',
-        chr(196).chr(176) => 'I', chr(196).chr(177) => 'i',
-        chr(196).chr(178) => 'IJ',chr(196).chr(179) => 'ij',
-        chr(196).chr(180) => 'J', chr(196).chr(181) => 'j',
-        chr(196).chr(182) => 'K', chr(196).chr(183) => 'k',
-        chr(196).chr(184) => 'k', chr(196).chr(185) => 'L',
-        chr(196).chr(186) => 'l', chr(196).chr(187) => 'L',
-        chr(196).chr(188) => 'l', chr(196).chr(189) => 'L',
-        chr(196).chr(190) => 'l', chr(196).chr(191) => 'L',
-        chr(197).chr(128) => 'l', chr(197).chr(129) => 'L',
-        chr(197).chr(130) => 'l', chr(197).chr(131) => 'N',
-        chr(197).chr(132) => 'n', chr(197).chr(133) => 'N',
-        chr(197).chr(134) => 'n', chr(197).chr(135) => 'N',
-        chr(197).chr(136) => 'n', chr(197).chr(137) => 'N',
-        chr(197).chr(138) => 'n', chr(197).chr(139) => 'N',
-        chr(197).chr(140) => 'O', chr(197).chr(141) => 'o',
-        chr(197).chr(142) => 'O', chr(197).chr(143) => 'o',
-        chr(197).chr(144) => 'O', chr(197).chr(145) => 'o',
-        chr(197).chr(146) => 'OE',chr(197).chr(147) => 'oe',
-        chr(197).chr(148) => 'R',chr(197).chr(149) => 'r',
-        chr(197).chr(150) => 'R',chr(197).chr(151) => 'r',
-        chr(197).chr(152) => 'R',chr(197).chr(153) => 'r',
-        chr(197).chr(154) => 'S',chr(197).chr(155) => 's',
-        chr(197).chr(156) => 'S',chr(197).chr(157) => 's',
-        chr(197).chr(158) => 'S',chr(197).chr(159) => 's',
-        chr(197).chr(160) => 'S', chr(197).chr(161) => 's',
-        chr(197).chr(162) => 'T', chr(197).chr(163) => 't',
-        chr(197).chr(164) => 'T', chr(197).chr(165) => 't',
-        chr(197).chr(166) => 'T', chr(197).chr(167) => 't',
-        chr(197).chr(168) => 'U', chr(197).chr(169) => 'u',
-        chr(197).chr(170) => 'U', chr(197).chr(171) => 'u',
-        chr(197).chr(172) => 'U', chr(197).chr(173) => 'u',
-        chr(197).chr(174) => 'U', chr(197).chr(175) => 'u',
-        chr(197).chr(176) => 'U', chr(197).chr(177) => 'u',
-        chr(197).chr(178) => 'U', chr(197).chr(179) => 'u',
-        chr(197).chr(180) => 'W', chr(197).chr(181) => 'w',
-        chr(197).chr(182) => 'Y', chr(197).chr(183) => 'y',
-        chr(197).chr(184) => 'Y', chr(197).chr(185) => 'Z',
-        chr(197).chr(186) => 'z', chr(197).chr(187) => 'Z',
-        chr(197).chr(188) => 'z', chr(197).chr(189) => 'Z',
-        chr(197).chr(190) => 'z', chr(197).chr(191) => 's',
+      chr(196).chr(128) => 'A', chr(196).chr(129) => 'a',
+      chr(196).chr(130) => 'A', chr(196).chr(131) => 'a',
+      chr(196).chr(132) => 'A', chr(196).chr(133) => 'a',
+      chr(196).chr(134) => 'C', chr(196).chr(135) => 'c',
+      chr(196).chr(136) => 'C', chr(196).chr(137) => 'c',
+      chr(196).chr(138) => 'C', chr(196).chr(139) => 'c',
+      chr(196).chr(140) => 'C', chr(196).chr(141) => 'c',
+      chr(196).chr(142) => 'D', chr(196).chr(143) => 'd',
+      chr(196).chr(144) => 'D', chr(196).chr(145) => 'd',
+      chr(196).chr(146) => 'E', chr(196).chr(147) => 'e',
+      chr(196).chr(148) => 'E', chr(196).chr(149) => 'e',
+      chr(196).chr(150) => 'E', chr(196).chr(151) => 'e',
+      chr(196).chr(152) => 'E', chr(196).chr(153) => 'e',
+      chr(196).chr(154) => 'E', chr(196).chr(155) => 'e',
+      chr(196).chr(156) => 'G', chr(196).chr(157) => 'g',
+      chr(196).chr(158) => 'G', chr(196).chr(159) => 'g',
+      chr(196).chr(160) => 'G', chr(196).chr(161) => 'g',
+      chr(196).chr(162) => 'G', chr(196).chr(163) => 'g',
+      chr(196).chr(164) => 'H', chr(196).chr(165) => 'h',
+      chr(196).chr(166) => 'H', chr(196).chr(167) => 'h',
+      chr(196).chr(168) => 'I', chr(196).chr(169) => 'i',
+      chr(196).chr(170) => 'I', chr(196).chr(171) => 'i',
+      chr(196).chr(172) => 'I', chr(196).chr(173) => 'i',
+      chr(196).chr(174) => 'I', chr(196).chr(175) => 'i',
+      chr(196).chr(176) => 'I', chr(196).chr(177) => 'i',
+      chr(196).chr(178) => 'IJ',chr(196).chr(179) => 'ij',
+      chr(196).chr(180) => 'J', chr(196).chr(181) => 'j',
+      chr(196).chr(182) => 'K', chr(196).chr(183) => 'k',
+      chr(196).chr(184) => 'k', chr(196).chr(185) => 'L',
+      chr(196).chr(186) => 'l', chr(196).chr(187) => 'L',
+      chr(196).chr(188) => 'l', chr(196).chr(189) => 'L',
+      chr(196).chr(190) => 'l', chr(196).chr(191) => 'L',
+      chr(197).chr(128) => 'l', chr(197).chr(129) => 'L',
+      chr(197).chr(130) => 'l', chr(197).chr(131) => 'N',
+      chr(197).chr(132) => 'n', chr(197).chr(133) => 'N',
+      chr(197).chr(134) => 'n', chr(197).chr(135) => 'N',
+      chr(197).chr(136) => 'n', chr(197).chr(137) => 'N',
+      chr(197).chr(138) => 'n', chr(197).chr(139) => 'N',
+      chr(197).chr(140) => 'O', chr(197).chr(141) => 'o',
+      chr(197).chr(142) => 'O', chr(197).chr(143) => 'o',
+      chr(197).chr(144) => 'O', chr(197).chr(145) => 'o',
+      chr(197).chr(146) => 'OE',chr(197).chr(147) => 'oe',
+      chr(197).chr(148) => 'R',chr(197).chr(149) => 'r',
+      chr(197).chr(150) => 'R',chr(197).chr(151) => 'r',
+      chr(197).chr(152) => 'R',chr(197).chr(153) => 'r',
+      chr(197).chr(154) => 'S',chr(197).chr(155) => 's',
+      chr(197).chr(156) => 'S',chr(197).chr(157) => 's',
+      chr(197).chr(158) => 'S',chr(197).chr(159) => 's',
+      chr(197).chr(160) => 'S', chr(197).chr(161) => 's',
+      chr(197).chr(162) => 'T', chr(197).chr(163) => 't',
+      chr(197).chr(164) => 'T', chr(197).chr(165) => 't',
+      chr(197).chr(166) => 'T', chr(197).chr(167) => 't',
+      chr(197).chr(168) => 'U', chr(197).chr(169) => 'u',
+      chr(197).chr(170) => 'U', chr(197).chr(171) => 'u',
+      chr(197).chr(172) => 'U', chr(197).chr(173) => 'u',
+      chr(197).chr(174) => 'U', chr(197).chr(175) => 'u',
+      chr(197).chr(176) => 'U', chr(197).chr(177) => 'u',
+      chr(197).chr(178) => 'U', chr(197).chr(179) => 'u',
+      chr(197).chr(180) => 'W', chr(197).chr(181) => 'w',
+      chr(197).chr(182) => 'Y', chr(197).chr(183) => 'y',
+      chr(197).chr(184) => 'Y', chr(197).chr(185) => 'Z',
+      chr(197).chr(186) => 'z', chr(197).chr(187) => 'Z',
+      chr(197).chr(188) => 'z', chr(197).chr(189) => 'Z',
+      chr(197).chr(190) => 'z', chr(197).chr(191) => 's',
     // Decompositions for Latin Extended-B
-        chr(200).chr(152) => 'S', chr(200).chr(153) => 's',
-        chr(200).chr(154) => 'T', chr(200).chr(155) => 't',
+      chr(200).chr(152) => 'S', chr(200).chr(153) => 's',
+      chr(200).chr(154) => 'T', chr(200).chr(155) => 't',
     // Euro Sign
-        chr(226).chr(130).chr(172) => 'E',
+      chr(226).chr(130).chr(172) => 'E',
     // GBP (Pound) Sign
-        chr(194).chr(163) => '',
+      chr(194).chr(163) => '',
     // Vowels with diacritic (Vietnamese)
     // unmarked
-        chr(198).chr(160) => 'O', chr(198).chr(161) => 'o',
-        chr(198).chr(175) => 'U', chr(198).chr(176) => 'u',
+      chr(198).chr(160) => 'O', chr(198).chr(161) => 'o',
+      chr(198).chr(175) => 'U', chr(198).chr(176) => 'u',
     // grave accent
-        chr(225).chr(186).chr(166) => 'A', chr(225).chr(186).chr(167) => 'a',
-        chr(225).chr(186).chr(176) => 'A', chr(225).chr(186).chr(177) => 'a',
-        chr(225).chr(187).chr(128) => 'E', chr(225).chr(187).chr(129) => 'e',
-        chr(225).chr(187).chr(146) => 'O', chr(225).chr(187).chr(147) => 'o',
-        chr(225).chr(187).chr(156) => 'O', chr(225).chr(187).chr(157) => 'o',
-        chr(225).chr(187).chr(170) => 'U', chr(225).chr(187).chr(171) => 'u',
-        chr(225).chr(187).chr(178) => 'Y', chr(225).chr(187).chr(179) => 'y',
+      chr(225).chr(186).chr(166) => 'A', chr(225).chr(186).chr(167) => 'a',
+      chr(225).chr(186).chr(176) => 'A', chr(225).chr(186).chr(177) => 'a',
+      chr(225).chr(187).chr(128) => 'E', chr(225).chr(187).chr(129) => 'e',
+      chr(225).chr(187).chr(146) => 'O', chr(225).chr(187).chr(147) => 'o',
+      chr(225).chr(187).chr(156) => 'O', chr(225).chr(187).chr(157) => 'o',
+      chr(225).chr(187).chr(170) => 'U', chr(225).chr(187).chr(171) => 'u',
+      chr(225).chr(187).chr(178) => 'Y', chr(225).chr(187).chr(179) => 'y',
     // hook
-        chr(225).chr(186).chr(162) => 'A', chr(225).chr(186).chr(163) => 'a',
-        chr(225).chr(186).chr(168) => 'A', chr(225).chr(186).chr(169) => 'a',
-        chr(225).chr(186).chr(178) => 'A', chr(225).chr(186).chr(179) => 'a',
-        chr(225).chr(186).chr(186) => 'E', chr(225).chr(186).chr(187) => 'e',
-        chr(225).chr(187).chr(130) => 'E', chr(225).chr(187).chr(131) => 'e',
-        chr(225).chr(187).chr(136) => 'I', chr(225).chr(187).chr(137) => 'i',
-        chr(225).chr(187).chr(142) => 'O', chr(225).chr(187).chr(143) => 'o',
-        chr(225).chr(187).chr(148) => 'O', chr(225).chr(187).chr(149) => 'o',
-        chr(225).chr(187).chr(158) => 'O', chr(225).chr(187).chr(159) => 'o',
-        chr(225).chr(187).chr(166) => 'U', chr(225).chr(187).chr(167) => 'u',
-        chr(225).chr(187).chr(172) => 'U', chr(225).chr(187).chr(173) => 'u',
-        chr(225).chr(187).chr(182) => 'Y', chr(225).chr(187).chr(183) => 'y',
+      chr(225).chr(186).chr(162) => 'A', chr(225).chr(186).chr(163) => 'a',
+      chr(225).chr(186).chr(168) => 'A', chr(225).chr(186).chr(169) => 'a',
+      chr(225).chr(186).chr(178) => 'A', chr(225).chr(186).chr(179) => 'a',
+      chr(225).chr(186).chr(186) => 'E', chr(225).chr(186).chr(187) => 'e',
+      chr(225).chr(187).chr(130) => 'E', chr(225).chr(187).chr(131) => 'e',
+      chr(225).chr(187).chr(136) => 'I', chr(225).chr(187).chr(137) => 'i',
+      chr(225).chr(187).chr(142) => 'O', chr(225).chr(187).chr(143) => 'o',
+      chr(225).chr(187).chr(148) => 'O', chr(225).chr(187).chr(149) => 'o',
+      chr(225).chr(187).chr(158) => 'O', chr(225).chr(187).chr(159) => 'o',
+      chr(225).chr(187).chr(166) => 'U', chr(225).chr(187).chr(167) => 'u',
+      chr(225).chr(187).chr(172) => 'U', chr(225).chr(187).chr(173) => 'u',
+      chr(225).chr(187).chr(182) => 'Y', chr(225).chr(187).chr(183) => 'y',
     // tilde
-        chr(225).chr(186).chr(170) => 'A', chr(225).chr(186).chr(171) => 'a',
-        chr(225).chr(186).chr(180) => 'A', chr(225).chr(186).chr(181) => 'a',
-        chr(225).chr(186).chr(188) => 'E', chr(225).chr(186).chr(189) => 'e',
-        chr(225).chr(187).chr(132) => 'E', chr(225).chr(187).chr(133) => 'e',
-        chr(225).chr(187).chr(150) => 'O', chr(225).chr(187).chr(151) => 'o',
-        chr(225).chr(187).chr(160) => 'O', chr(225).chr(187).chr(161) => 'o',
-        chr(225).chr(187).chr(174) => 'U', chr(225).chr(187).chr(175) => 'u',
-        chr(225).chr(187).chr(184) => 'Y', chr(225).chr(187).chr(185) => 'y',
+      chr(225).chr(186).chr(170) => 'A', chr(225).chr(186).chr(171) => 'a',
+      chr(225).chr(186).chr(180) => 'A', chr(225).chr(186).chr(181) => 'a',
+      chr(225).chr(186).chr(188) => 'E', chr(225).chr(186).chr(189) => 'e',
+      chr(225).chr(187).chr(132) => 'E', chr(225).chr(187).chr(133) => 'e',
+      chr(225).chr(187).chr(150) => 'O', chr(225).chr(187).chr(151) => 'o',
+      chr(225).chr(187).chr(160) => 'O', chr(225).chr(187).chr(161) => 'o',
+      chr(225).chr(187).chr(174) => 'U', chr(225).chr(187).chr(175) => 'u',
+      chr(225).chr(187).chr(184) => 'Y', chr(225).chr(187).chr(185) => 'y',
     // acute accent
-        chr(225).chr(186).chr(164) => 'A', chr(225).chr(186).chr(165) => 'a',
-        chr(225).chr(186).chr(174) => 'A', chr(225).chr(186).chr(175) => 'a',
-        chr(225).chr(186).chr(190) => 'E', chr(225).chr(186).chr(191) => 'e',
-        chr(225).chr(187).chr(144) => 'O', chr(225).chr(187).chr(145) => 'o',
-        chr(225).chr(187).chr(154) => 'O', chr(225).chr(187).chr(155) => 'o',
-        chr(225).chr(187).chr(168) => 'U', chr(225).chr(187).chr(169) => 'u',
+      chr(225).chr(186).chr(164) => 'A', chr(225).chr(186).chr(165) => 'a',
+      chr(225).chr(186).chr(174) => 'A', chr(225).chr(186).chr(175) => 'a',
+      chr(225).chr(186).chr(190) => 'E', chr(225).chr(186).chr(191) => 'e',
+      chr(225).chr(187).chr(144) => 'O', chr(225).chr(187).chr(145) => 'o',
+      chr(225).chr(187).chr(154) => 'O', chr(225).chr(187).chr(155) => 'o',
+      chr(225).chr(187).chr(168) => 'U', chr(225).chr(187).chr(169) => 'u',
     // dot below
-        chr(225).chr(186).chr(160) => 'A', chr(225).chr(186).chr(161) => 'a',
-        chr(225).chr(186).chr(172) => 'A', chr(225).chr(186).chr(173) => 'a',
-        chr(225).chr(186).chr(182) => 'A', chr(225).chr(186).chr(183) => 'a',
-        chr(225).chr(186).chr(184) => 'E', chr(225).chr(186).chr(185) => 'e',
-        chr(225).chr(187).chr(134) => 'E', chr(225).chr(187).chr(135) => 'e',
-        chr(225).chr(187).chr(138) => 'I', chr(225).chr(187).chr(139) => 'i',
-        chr(225).chr(187).chr(140) => 'O', chr(225).chr(187).chr(141) => 'o',
-        chr(225).chr(187).chr(152) => 'O', chr(225).chr(187).chr(153) => 'o',
-        chr(225).chr(187).chr(162) => 'O', chr(225).chr(187).chr(163) => 'o',
-        chr(225).chr(187).chr(164) => 'U', chr(225).chr(187).chr(165) => 'u',
-        chr(225).chr(187).chr(176) => 'U', chr(225).chr(187).chr(177) => 'u',
-        chr(225).chr(187).chr(180) => 'Y', chr(225).chr(187).chr(181) => 'y',
-        );
+      chr(225).chr(186).chr(160) => 'A', chr(225).chr(186).chr(161) => 'a',
+      chr(225).chr(186).chr(172) => 'A', chr(225).chr(186).chr(173) => 'a',
+      chr(225).chr(186).chr(182) => 'A', chr(225).chr(186).chr(183) => 'a',
+      chr(225).chr(186).chr(184) => 'E', chr(225).chr(186).chr(185) => 'e',
+      chr(225).chr(187).chr(134) => 'E', chr(225).chr(187).chr(135) => 'e',
+      chr(225).chr(187).chr(138) => 'I', chr(225).chr(187).chr(139) => 'i',
+      chr(225).chr(187).chr(140) => 'O', chr(225).chr(187).chr(141) => 'o',
+      chr(225).chr(187).chr(152) => 'O', chr(225).chr(187).chr(153) => 'o',
+      chr(225).chr(187).chr(162) => 'O', chr(225).chr(187).chr(163) => 'o',
+      chr(225).chr(187).chr(164) => 'U', chr(225).chr(187).chr(165) => 'u',
+      chr(225).chr(187).chr(176) => 'U', chr(225).chr(187).chr(177) => 'u',
+      chr(225).chr(187).chr(180) => 'Y', chr(225).chr(187).chr(181) => 'y',
+      );
 
 $string = strtr($string, $chars);
 } else {
@@ -1247,7 +957,7 @@ $string = strtr($string, $chars);
 
 return $string;
 }
-}
+
 
 /**
  * Generate GUID
@@ -1270,24 +980,24 @@ function __get_current_date(){
 /**
  * Execute soap request
  */
-if( !function_exists('__soap_request') ) {
-  function __soap_request($url, $headers, $xml_request ) {
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL , $url );
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER , 1);
-    curl_setopt($ch, CURLOPT_TIMEOUT , 60);
-    curl_setopt($ch, CURLOPT_HTTPHEADER , $headers );
-    curl_setopt($ch, CURLOPT_USERAGENT , $defined_vars['HTTP_USER_AGENT'] );
-    curl_setopt($ch, CURLOPT_POST , 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS , $xml_request );
-    $xml_response = curl_exec($ch);
-    if (curl_errno($ch)) {
-      $error_message = curl_error($ch);
-      $error_no = curl_errno($ch);
-    }
-    return $xml_response;
+
+function __soap_request($url, $headers, $xml_request ) {
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL , $url );
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER , 1);
+  curl_setopt($ch, CURLOPT_TIMEOUT , 60);
+  curl_setopt($ch, CURLOPT_HTTPHEADER , $headers );
+  curl_setopt($ch, CURLOPT_USERAGENT , $defined_vars['HTTP_USER_AGENT'] );
+  curl_setopt($ch, CURLOPT_POST , 1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS , $xml_request );
+  $xml_response = curl_exec($ch);
+  if (curl_errno($ch)) {
+    $error_message = curl_error($ch);
+    $error_no = curl_errno($ch);
   }
+  return $xml_response;
 }
+
 
 
 
@@ -1341,16 +1051,16 @@ function __get_thumbnail( $image_url, $width, $height ) {
 
 
 
-if( !function_exists("__custom_image_resize_dimensions") ) {
-  function __custom_image_resize_dimensions($output, $orig_w, $orig_h, $dest_w, $dest_h, $crop = false) {
 
-    if ( null !== $output )
-      return $output;
+function __custom_image_resize_dimensions($output, $orig_w, $orig_h, $dest_w, $dest_h, $crop = false) {
 
-    if ( $crop ) {
+  if ( null !== $output )
+    return $output;
+
+  if ( $crop ) {
     #$data = compact('orig_w', 'orig_h', 'dest_w', 'dest_h');
     #echo 'data<pre>'.print_r($data, true). '</pre>';
-      if ( $dest_w > $orig_w || $dest_h > $orig_h ) {
+    if ( $dest_w > $orig_w || $dest_h > $orig_h ) {
 
       /*if( $orig_w / $orig_h >= $dest_w / $dest_h ) { // Landscape
         $dest_w = ceil($orig_w * $orig_h / $dest_h);
@@ -1406,27 +1116,25 @@ if( !function_exists("__custom_image_resize_dimensions") ) {
   // int dst_x, int dst_y, int src_x, int src_y, int dst_w, int dst_h, int src_w, int src_h
   return array( 0, 0, (int) $s_x, (int) $s_y, (int) $new_w, (int) $new_h, (int) $crop_w, (int) $crop_h );
 }
-}
 
 
-if( !function_exists("__get_image_size") ) {
-  function __get_image_size( $image_url, $width, $height, $crop = false, $position = '' ) {
+function __get_image_size( $image_url, $width, $height, $crop = false, $position = '' ) {
 
-    $upload_dir = wp_upload_dir();
-    $image_path = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $image_url );
-    $pathinfo = pathinfo( $image_path );
-    $pathinfo['filename'] = strtolower(sanitize_file_name($pathinfo['filename']));
-    $pathinfo['extension'] = strtolower($pathinfo['extension']);
+  $upload_dir = wp_upload_dir();
+  $image_path = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $image_url );
+  $pathinfo = pathinfo( $image_path );
+  $pathinfo['filename'] = strtolower(sanitize_file_name($pathinfo['filename']));
+  $pathinfo['extension'] = strtolower($pathinfo['extension']);
 
-    if( $position ) {
-      $new_file_name = sprintf( "%s_%sx%s_%s.%s", $pathinfo['filename'], $width, $height, strtolower($position), $pathinfo['extension'] );
-    }else{
-      $new_file_name = sprintf( "%s_%sx%s.%s", $pathinfo['filename'], $width, $height, $pathinfo['extension'] );
-    }
+  if( $position ) {
+    $new_file_name = sprintf( "%s_%sx%s_%s.%s", $pathinfo['filename'], $width, $height, strtolower($position), $pathinfo['extension'] );
+  }else{
+    $new_file_name = sprintf( "%s_%sx%s.%s", $pathinfo['filename'], $width, $height, $pathinfo['extension'] );
+  }
 
-    $new_image_path = $pathinfo['dirname'] . '/' . $new_file_name;
+  $new_image_path = $pathinfo['dirname'] . '/' . $new_file_name;
 
-    if( ! file_exists($image_path) ) {
+  if( ! file_exists($image_path) ) {
     /*// Try to upload file via url.
     $filedata = file_get_contents($image_url);
     if( $filedata ) {
@@ -1475,32 +1183,31 @@ if( !function_exists("__get_image_size") ) {
 
   return false;
 }
-}
 
 
-if( !function_exists("__crop_image") ) {
-  function __crop_image( $src_url, $dst_url = '', $src_x, $src_y, $src_w, $src_h, $dst_w = null, $dst_h = null, $src_abs = false ) {
-    $upload_dir = wp_upload_dir();
-    $src_path = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $src_url );
-    if( empty($dst_url) ) {
-      $pathinfo = pathinfo( $src_path );
-      $dst_filename = sprintf( "%s_%sx%s.%s", $pathinfo['filename'], $src_w, $src_h, $pathinfo['extension'] );
-      $dst_path = $pathinfo['dirname'] . '/' . $dst_filename;
-    }else{
-      $dst_path = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $dst_url );
-    }
 
-    $image = wp_get_image_editor( $src_path );
-    if ( ! is_wp_error( $image ) ) {
-    //$image->resize( $width, $height, $crop );
-      $image->crop( $src_x, $src_y, $src_w, $src_h, $dst_w, $dst_h, $src_abs );
-      $image->save( $dst_path );
-      return str_replace($upload_dir['basedir'], $upload_dir['baseurl'], $dst_path);
-    }
-
-    return false;
+function __crop_image( $src_url, $dst_url = '', $src_x, $src_y, $src_w, $src_h, $dst_w = null, $dst_h = null, $src_abs = false ) {
+  $upload_dir = wp_upload_dir();
+  $src_path = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $src_url );
+  if( empty($dst_url) ) {
+    $pathinfo = pathinfo( $src_path );
+    $dst_filename = sprintf( "%s_%sx%s.%s", $pathinfo['filename'], $src_w, $src_h, $pathinfo['extension'] );
+    $dst_path = $pathinfo['dirname'] . '/' . $dst_filename;
+  }else{
+    $dst_path = str_replace( $upload_dir['baseurl'], $upload_dir['basedir'], $dst_url );
   }
+
+  $image = wp_get_image_editor( $src_path );
+  if ( ! is_wp_error( $image ) ) {
+    //$image->resize( $width, $height, $crop );
+    $image->crop( $src_x, $src_y, $src_w, $src_h, $dst_w, $dst_h, $src_abs );
+    $image->save( $dst_path );
+    return str_replace($upload_dir['basedir'], $upload_dir['baseurl'], $dst_path);
+  }
+
+  return false;
 }
+
 
 
 function __array2xml($array, $xml = false){
@@ -1526,26 +1233,24 @@ function __array2xml($array, $xml = false){
 }
 */
 
-if(!function_exists('__is_strong_password')):
-  function __is_strong_password($password){
-    $match_lower =  preg_match("/[a-z]+/", $password);
-    $match_upper =  preg_match("/[A-Z]+/", $password);
-    $match_number =  preg_match("/[0-9]+/", $password);
-    $match_special =  preg_match("/[\W]+/", $password);
+function __is_strong_password($password){
+  $match_lower =  preg_match("/[a-z]+/", $password);
+  $match_upper =  preg_match("/[A-Z]+/", $password);
+  $match_number =  preg_match("/[0-9]+/", $password);
+  $match_special =  preg_match("/[\W]+/", $password);
 
-    $match_valid_success = 0;
+  $match_valid_success = 0;
 
-    $match_valid_success += ($match_lower) ? 1 : 0;
-    $match_valid_success += ($match_upper) ? 1 : 0;
-    $match_valid_success += ($match_number) ? 1 : 0;
-    $match_valid_success += ($match_special) ? 1 : 0;
+  $match_valid_success += ($match_lower) ? 1 : 0;
+  $match_valid_success += ($match_upper) ? 1 : 0;
+  $match_valid_success += ($match_number) ? 1 : 0;
+  $match_valid_success += ($match_special) ? 1 : 0;
 
-    if($match_valid_success < 2){
-      return false;
-    }
-    return true;
+  if($match_valid_success < 2){
+    return false;
   }
-endif;
+  return true;
+}
 
 
 function __is_valid_mobile($param){
@@ -1562,49 +1267,45 @@ function __is_valid_mobile($param){
 {
     $d = DateTime::createFromFormat('Y-m-d', $date);
     return $d && $d->format('Y-m-d') == $date;
-}*/
+  }*/
 
 /**
 *
 * validate access token
 *
 */
-if(!function_exists("__is_valid_token")):
-  function __is_valid_token($token, $check_key){
-    $secret_key = "14e1b600b1fd579f47433b88e8d85291";
+function __is_valid_token($token, $check_key){
+  $secret_key = "14e1b600b1fd579f47433b88e8d85291";
 
-    $token_checked = md5($secret_key . $check_key);
+  $token_checked = md5($secret_key . $check_key);
 
-    if(empty($token) || ($token != $token_checked)){
-      return FALSE;
-    }
-    return TRUE;
+  if(empty($token) || ($token != $token_checked)){
+    return FALSE;
   }
-  endif;
+  return TRUE;
+}
 
-if(!function_exists("__calculate_age")):
-  function __calculate_age($dob){
+function __calculate_age($dob){
 
-    $age = 0 ;
-    try {
-      if(DateTime::createFromFormat('Y-m-d', $dob) !== FALSE){
-        $from = DateTime::createFromFormat('Y-m-d',$dob);
-      } else {
-        $from   = new DateTime('today');
-      }
-    } catch (Exception $e) {
-
+  $age = 0 ;
+  try {
+    if(DateTime::createFromFormat('Y-m-d', $dob) !== FALSE){
+      $from = DateTime::createFromFormat('Y-m-d',$dob);
+    } else {
       $from   = new DateTime('today');
     }
-    $to   = new DateTime('today');
-    $age = $from->diff($to)->y;
+  } catch (Exception $e) {
+
+    $from   = new DateTime('today');
+  }
+  $to   = new DateTime('today');
+  $age = $from->diff($to)->y;
 
 
 
 
-    return $age;
+  return $age;
 }
-endif;
 /**
 *
 * Validate Json format
@@ -1625,7 +1326,7 @@ function __is_valid_email($email)
     return TRUE;
    } else { // The email address is not valid
     return FALSE;
-   }
+  }
 }
 
 /**
@@ -1640,7 +1341,7 @@ function __is_valid_phonenumber($phone_number)
     return TRUE;
    } else { // The email address is not valid
     return FALSE;
-   }
+  }
 }
 
 
@@ -1723,20 +1424,18 @@ function __save_image_base64($image_base64, $type ) {
 }
 
 
-if( !function_exists('write_file_recursive') ) :
-  function write_file_recursive($dir, $filename = 'index.php', $data = ''){
-    $path = "{$dir}/{$filename}";
-    if( file_exists($path) )
-      return false;
-    @file_put_contents($path, $data);
-    $files = array_diff(scandir($dir), array('.','..'));
-    foreach ($files as $file) {
-      if(is_dir("$dir/$file")) {
-        write_file_recursive("$dir/$file", $filename, $data);
-      }
+function write_file_recursive($dir, $filename = 'index.php', $data = ''){
+  $path = "{$dir}/{$filename}";
+  if( file_exists($path) )
+    return false;
+  @file_put_contents($path, $data);
+  $files = array_diff(scandir($dir), array('.','..'));
+  foreach ($files as $file) {
+    if(is_dir("$dir/$file")) {
+      write_file_recursive("$dir/$file", $filename, $data);
     }
   }
-  endif;
+}
 
 /**
  * Insert element into array to specific position?
@@ -1747,46 +1446,42 @@ if( !function_exists('write_file_recursive') ) :
  * @param $position int The position.
  * @return array The new array.
  */
-if( !function_exists('__array_insert') ) :
-  function __array_insert($array, $elements, $position = 0) {
+function __array_insert($array, $elements, $position = 0) {
 
-    if( !is_array($array) ) {
-      return;
-    }
-
-    if( empty($elements) ) {
-      return $array;
-    }
-
-    if( !is_array($elements) ) {
-      $elements = (array)$elements;
-    }
-
-
-
-    $position = min( $position, count($array) );
-
-    if( $position == 0 ) {
-      return $elements + $array;
-    }elseif( $position == count($array) ) {
-      return $array + $elements;
-    }
-
-    return array_slice($array, 0, $position, true) + $elements + array_slice($array, $position, count($array) - 1, true) ;
+  if( !is_array($array) ) {
+    return;
   }
-  endif;
 
-  if( !function_exists("parse_bool") ):
-    function parse_bool($str){
-      return filter_var($str, FILTER_VALIDATE_BOOLEAN);
-    }
-    endif;
+  if( empty($elements) ) {
+    return $array;
+  }
 
-    function __dump($obj) {
-      print '<pre>';
-      print_r($obj);
-      print '</pre>';
-    }
+  if( !is_array($elements) ) {
+    $elements = (array)$elements;
+  }
+
+  $position = min( $position, count($array) );
+
+  if( $position == 0 ) {
+    return $elements + $array;
+  }elseif( $position == count($array) ) {
+    return $array + $elements;
+  }
+
+  return array_slice($array, 0, $position, true) + $elements + array_slice($array, $position, count($array) - 1, true) ;
+}
+
+
+function parse_bool($str){
+  return filter_var($str, FILTER_VALIDATE_BOOLEAN);
+}
+
+
+function __dump($obj) {
+  print '<pre>';
+  print_r($obj);
+  print '</pre>';
+}
 
 
 
@@ -1795,39 +1490,37 @@ if( !function_exists('__array_insert') ) :
 * Save Bas64 image into Drupal Media
 * @return ID of file
 */
-if(!function_exists("__save_file_with_base64")):
-  function __save_file_with_base64($base64_string) {
-    return 0;
+function __save_file_with_base64($base64_string) {
+  return 0;
+}
+
+function __is_null_or_empty($str) {
+  if(trim($str) == '' || is_null($str)) {
+    return FALSE;
   }
-  endif;
+  return TRUE;
+}
 
-  function __is_null_or_empty($str) {
-    if(trim($str) == '' || is_null($str)) {
-      return FALSE;
-    }
-    return TRUE;
+
+function __get_mom_access_token($mom_id) {
+
+  if($item = db_query("SELECT access_code FROM milo_mec_user_mobile WHERE user_id = :mom_id ORDER BY created_date DESC LIMIT 1",array(':mom_id'=>$mom_id))->fetchObject()) {
+    return $item->access_code;
   }
-
-
-  function __get_mom_access_token($mom_id) {
-
-    if($item = db_query("SELECT access_code FROM milo_mec_user_mobile WHERE user_id = :mom_id ORDER BY created_date DESC LIMIT 1",array(':mom_id'=>$mom_id))->fetchObject()) {
-      return $item->access_code;
-    }
-    return null;
-  }
+  return null;
+}
 
 
 
-  function __get_image_from_fid($fid,$image_style = '') {
-    $file = file_load($fid);
-    return ($file->uri ? '<img src="'.image_style_url($image_style ? $image_style : 'thumbnail',$file->uri).'" class="hide-for-small">' : '');
-  }
+function __get_image_from_fid($fid,$image_style = '') {
+  $file = file_load($fid);
+  return ($file->uri ? '<img src="'.image_style_url($image_style ? $image_style : 'thumbnail',$file->uri).'" class="hide-for-small">' : '');
+}
 
-  function __get_image_path_from_fid($fid,$image_style = '') {
-    $file = file_load($fid);
-    return image_style_url($image_style ? $image_style : 'thumbnail',$file->uri);
-  }
+function __get_image_path_from_fid($fid,$image_style = '') {
+  $file = file_load($fid);
+  return image_style_url($image_style ? $image_style : 'thumbnail',$file->uri);
+}
 
 
 
@@ -1836,407 +1529,42 @@ if(!function_exists("__save_file_with_base64")):
 */
 function oo_common_mail($key,&$message,$params)  {
 
-       switch ($key) {
-             case 'send_mail':
-                  $message['subject']=t($params['subject']);
-                  $message['body'][]=$params['body'];
-                  $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
-       break;
-          }
+ switch ($key) {
+   case 'send_mail':
+   $message['subject']=t($params['subject']);
+   $message['body'][]=$params['body'];
+   $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+   break;
  }
+}
 
  /**
  * Custom Send Email
  */
-function __send_email($subject, $body, $to, $from){
+ function __send_email($subject, $body, $to, $from){
   global $language;
   $params = array(
     'subject' => $subject,
     'body' => $body,
-  );
+    );
 
   drupal_mail('oo_common', 'send_mail', $to, $language, $params);
 }
 
 
 
-//-------- Common Gender -------------//
-if(!function_exists('__milo_get_type_face')):
-function __milo_get_type_face ($face_id){
-  $face_type = '';
-  switch ($face_id) {
-    case '1':
-      $face_type = 'Fat';
-      break;
-    case '2':
-      $face_type = 'Mid';
-      break;
-    case '3':
-      $face_type = 'Thin';
-      break;
-    default:
-      $face_type = 'Fat';
-      # code...
-      break;
-  }
-  return $face_type;
-}
-endif;
 
-if(!function_exists('__milo_get_type_hair')):
-function __milo_get_type_hair ($hair_id){
-  $hair_type = '';
-  switch ($hair_id) {
-    case '1':
-      $hair_type = 'Hair 01';
-      break;
-    case '2':
-      $hair_type = 'Hair 02';
-      break;
-    case '3':
-      $hair_type = 'Hair 03';
-      break;
-    default:
-      $hair_type = 'Hair 01';
-      # code...
-      break;
-  }
-  return $hair_type;
-}
-endif;
-
-if(!function_exists('__milo_get_type_glass')):
-function __milo_get_type_glass ($glass_id){
-  $glass_type = '';
-  switch ($glass_id) {
-    case '1':
-      $glass_type = 'No Glass';
-      break;
-    case '2':
-      $glass_type = 'Glass';
-      break;
-    default:
-      $glass_type = 'No Glass';
-      # code...
-      break;
-  }
-  return $glass_type;
-}
-endif;
-
-
-if(!function_exists('__milo_get_type_gender')):
-function __milo_get_type_gender ($gender_id){
-  $gender_type = '';
-  switch ($gender_id) {
-    case '1':
-      $gender_type = 'Boy';
-      break;
-    case '2':
-      $gender_type = 'Girl';
-      break;
-    default:
-      $gender_type = 'Boy';
-      # code...
-      break;
-  }
-  return $gender_type;
-}
-endif;
-
-
-/**
-*
-* Get Avatar 3D URL of current Kid
-*
-* @param kid_gender(int)
-* @param kid_hair(int) =1  default
-* @param kid_face(int) =1 default
-* @param kid_glass(int) =1 default
-*
-* @return Kid Avatar (Object)
-*     - avatar_url (string)
-*     - avatar_full_body_url (string)
-*
-*/
-if(!function_exists('__milo_kid_avatar_image_get')):
-  function __milo_kid_avatar_image_get($kid_gender , $kid_hair = 1, $kid_face = 1 , $kid_glass = 1, $default_fullbody = 1){
-    $default = '/images/kid-list-img.jpg';
-    $kid_avatar = array(
-      "avatar_url" => "",
-      "avatar_full_body_url" => ""
-    );
-
-    $avatar_id = $kid_gender .'_'.$kid_glass . '_' . $kid_face.'_'.$kid_hair;
-    $icon_id = variable_get('milo_avatar_id_'.$avatar_id, 0);
-    $icon_full_id = variable_get('milo_avatar_full_body_id_'.$avatar_id, 0);
-    //echo $avatar_id;die;
-    //if(!empty($icon_id)){
-      $kid_avatar["avatar_url"] = __drupal_get_picture_by_fid($icon_id, $default, 'avatar_face');
-    if($default_fullbody == 1) {
-      $kid_avatar["avatar_full_body_url"] = __drupal_get_picture_by_fid($icon_full_id, $default, 'avatar_full_body');
-    } else {
-      $kid_avatar["avatar_full_body_url"] = __drupal_get_picture_by_fid($icon_full_id, $default, 'avatar_dashboard');
-    }
-
-
-    return $kid_avatar;
-  }
-endif;
 
 function pr($result = '', $e = 0) {
-    echo '<pre>';
-    print_r($result);
-    echo '</pre>';
-    if ($e) {
-        exit ;
-    }
-}
-
-function __get_days() {
-  $arr = array();
-  $arr['0'] = 'Ngày';
-  for($i=1; $i<=31; $i++) {
-    $arr[$i] = $i;
+  echo '<pre>';
+  print_r($result);
+  echo '</pre>';
+  if ($e) {
+    exit ;
   }
-
-  return $arr;
 }
 
-function __get_months() {
-  $arr = array(
-    0 => 'Tháng',
-    1 => '1',
-    2 => '2',
-    3 => '3',
-    4 => '4',
-    5 => '5',
-    6 => '6',
-    7 => '7',
-    8 => '8',
-    9 => '9',
-    10 => '10',
-    11 => '11',
-    12 => '12',
-  );
 
-  return $arr;
-}
-
-function __get_publish_year() {
-  $arr = array();
-  $cur_year = date("Y");
-
-  $arr['0'] = 'Năm';
-
-  for($i=$cur_year; $i>=1930; $i--) {
-    $arr[$i] = $i;
-  }
-
-  return $arr;
-}
-
-function __get_future_year() {
-  $arr = array();
-  $cur_year = date("Y");
-  $end_year = '2030';
-
-  for($i=$cur_year; $i <= $end_year; $i++) {
-    $arr[$i] = $i;
-  }
-
-  return $arr;
-}
-
-function __get_public_income() {
-  $arr = array(
-    '1' => 'Dưới 5 triệu VNĐ',
-    '2' =>'Từ 5 triệu VNĐ - 10 triệu VNĐ',
-    '3' =>'Từ 10 triệu VNĐ - 15 triệu VNĐ',
-    '4' =>'Từ 15 triệu VNĐ - 20 triệu VNĐ',
-    '5' =>'Trên 20 triệu VNĐ',
-    '6' =>'Khác'
-  );
-
-  return $arr;
-}
-
-function __get_public_profession() {
-  $arr = array(
-    '1' => 'Hành Chính Văn Phòng',
-    '2' => 'Kỹ Thuật Ứng Dụng',
-    '3' => 'Nông/Lâm/Ngư Nghiệp',
-    '4' => 'Du Lịch/Khách Sạn/Nhà Hàng',
-    '5' => 'Pháp Lý/Quân Đội',
-    '6' => 'Quảng Cáo/PR/Dịch Vụ Khách Hàng',
-    '7' => 'Kinh Doanh/Bán Hàng',
-    '8' => 'Kế Toán/Tài Chính/Ngân Hàng',
-    '9' => 'Lao Động Phổ Thông',
-    '10' => 'IT',
-    '11' => 'Nghệ Thuật/Thiết Kế/Giải Trí/Thể Thao',
-    '12' => 'Xuất Nhập Khẩu',
-    '13' => 'Y Khoa',
-    '14' => 'Nội Trợ',
-    '15' => 'Báo Chí/Biên Tập Viên',
-    '16' => 'Quản Lý Điều Hành',
-    '17' => 'Giáo Dục/Đào Tạo/Thư Viện',
-    '18' => 'Kiến Trúc/Xây Dựng/Nội Thất',
-    '19' => 'Khác',
-  );
-
-  return $arr;
-}
-
-function __get_vietnam_province() {
-  $arr = array();
-
-  $sql = "SELECT provinceid, name FROM province ORDER BY name";
-
-  $result = db_query($sql)->fetchAll();
-
-  $arr['0'] = '-- Chọn Tỉnh/Thành --';
-
-  foreach($result as $key => $value) {
-    $arr[$value->provinceid] = $value->name;
-  }
-
-  return $arr;
-}
-
-function __get_province_detail($provinceid){
-  $arr = array();
-
-  $sql = "SELECT provinceid, name FROM province WHERE provinceid = :provinceid";
-
-  $result = db_query($sql, array(':provinceid' => $provinceid))->fetchObject();
-
-  $arr = $result;
-
-  return $arr;
-}
-
-function __get_vietnam_district($provinceid = FALSE) {
-  $arr = array();
-
-  $sql = "SELECT districtid, name FROM district";
-
-  if($provinceid) {
-    $sql .= ' WHERE provinceid = :provinceid';
-  }
-
-  $sql .= ' ORDER BY name';
-
-  $result = db_query($sql, array(':provinceid' => $provinceid))->fetchAll();
-
-  $arr[] = '-- Chọn Quận/Huyện --';
-
-  foreach($result as $key => $value) {
-    $arr[$value->districtid] = $value->name;
-  }
-
-  return $arr;
-}
-
-function __get_district_detail($districtid){
-  $arr = array();
-
-  $sql = "SELECT districtid, name FROM district WHERE districtid = :districtid";
-
-  $result = db_query($sql, array(':districtid' => $districtid))->fetchObject();
-
-  $arr = $result;
-
-  return $arr;
-}
-
-function __get_vietnam_ward($districtid = FALSE) {
-  $arr = array();
-
-  $sql = "SELECT wardid, name FROM ward";
-
-  if($districtid) {
-    $sql .= ' WHERE districtid = :districtid';
-  }
-
-  $result = db_query($sql, array(':districtid' => $districtid))->fetchAll();
-
-  foreach($result as $key => $value) {
-    $arr[$value->wardid] = $value->name;
-  }
-
-  return $arr;
-}
-
-function __get_ward_detail($wardid){
-  $arr = array();
-
-  $sql = "SELECT wardid, name FROM ward WHERE wardid = :wardid";
-
-  $result = db_query($sql, array(':wardid' => $wardid))->fetchObject();
-
-  $arr = $result;
-
-  return $arr;
-}
-
-if(!function_exists('__upload_file')) {
-
-  function __upload_file($file_upload, $folder) {
-    $result = false;
-
-    $allowed_file_types = array('jpg', 'png', 'jpeg', 'gif', 'flv', 'mp4');
-    $message = '';
-    $full_path = '';
-    $file_name = '';
-    $max_size = 1000000;
-    try {
-        file_prepare_directory($folder, $options = FILE_CREATE_DIRECTORY);
-
-        $target_dir = $folder;
-        $target_file = $target_dir . '/' . basename($file_upload["name"]);
-        $uploadOk = 1;
-        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-        $file_to_upload = basename(REQUEST_TIME) . '.' . $imageFileType;
-        $target_file = $target_dir . '/' . $file_to_upload;
-
-        // Check if file already exists
-        if (file_exists($target_file)) {
-            $message = "Sorry, file already exists.";
-            $uploadOk = 0;
-        }
-        // Check file size
-        if ($file_upload["size"] > $max_size) {
-            $message = "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
-        // Allow certain file formats
-        if (!in_array($imageFileType, $allowed_file_types)) {
-            $message = "Invalid file format";
-            $uploadOk = 0;
-        }
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            $returnData['message'] = $message;
-            // if everything is ok, try to upload file
-        } else {
-            if (move_uploaded_file($file_upload["tmp_name"], $target_file)) {
-                $message = "The file " . basename($file_upload["name"]) . " has been uploaded.";
-            } else {
-                $message = "Sorry, there was an error uploading your file.";
-            }
-        }
-        $result = true;
-    } catch (RuntimeException $e) {
-
-        $message = $e -> getMessage();
-
-    }
-    $file_path = $target_file;
-
-    return $file_to_upload;
-    }
-
-}
 
 
 /* EXPORT */
@@ -2244,52 +1572,52 @@ function createExcelFile($header, $formatExcel = array()) {
   require_once DRUPAL_ROOT.'/'.'sites/all/libraries/PHPExcel/PHPExcel.php';
 
     // Create report
-    $objPHPExcel = new PHPExcel();
+  $objPHPExcel = new PHPExcel();
 
     // Set document properties
-    $objPHPExcel->getProperties()->setCreator("setCreator")
-        ->setLastModifiedBy("setLastModifiedBy")
-        ->setTitle("setTitle")
-        ->setSubject("setSubject")
-        ->setDescription("setDescription")
-        ->setKeywords("setKeywords")
-        ->setCategory("setCategory");
+  $objPHPExcel->getProperties()->setCreator("setCreator")
+  ->setLastModifiedBy("setLastModifiedBy")
+  ->setTitle("setTitle")
+  ->setSubject("setSubject")
+  ->setDescription("setDescription")
+  ->setKeywords("setKeywords")
+  ->setCategory("setCategory");
 
     // Set default columns
-    $styleArray = array(
-        'font'  => array(
-            'bold'  => true,
-            'color' => array('rgb' => 'FFFFFF')
-        ),
-        'borders' => array(
-            'allborders' => array(
-                'style' => PHPExcel_Style_Border::BORDER_THIN
-            )
+  $styleArray = array(
+    'font'  => array(
+      'bold'  => true,
+      'color' => array('rgb' => 'FFFFFF')
+      ),
+    'borders' => array(
+      'allborders' => array(
+        'style' => PHPExcel_Style_Border::BORDER_THIN
         )
+      )
     );
 
-    $sheet1 = $objPHPExcel->getActiveSheet(0);
+  $sheet1 = $objPHPExcel->getActiveSheet(0);
 
-    foreach($header as $k=>$v) {
+  foreach($header as $k=>$v) {
 
         // Write Header
-        $sheet1->setCellValue($k.'1', $v);
+    $sheet1->setCellValue($k.'1', $v);
 
         // Set Column Width
-        if(isset($formatExcel['c_width'][$k])) {
-            $sheet1->getColumnDimension($k)->setWidth($formatExcel['c_width'][$k]);
-        } else {
-            $sheet1->getColumnDimension($k)->setAutoSize(true);
-        }
+    if(isset($formatExcel['c_width'][$k])) {
+      $sheet1->getColumnDimension($k)->setWidth($formatExcel['c_width'][$k]);
+    } else {
+      $sheet1->getColumnDimension($k)->setAutoSize(true);
     }
+  }
 
-    $sheet1->getStyle('A1:'.$sheet1->getHighestColumn().'1')->applyFromArray($styleArray);
+  $sheet1->getStyle('A1:'.$sheet1->getHighestColumn().'1')->applyFromArray($styleArray);
     // Set cell background color
-    cellColor($objPHPExcel, 'A1:'.$sheet1->getHighestColumn().'1', '0489B1');
+  cellColor($objPHPExcel, 'A1:'.$sheet1->getHighestColumn().'1', '0489B1');
     // Set Column Alignment
-    $sheet1->getStyle('A1:'.$sheet1->getHighestColumn().'1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+  $sheet1->getStyle('A1:'.$sheet1->getHighestColumn().'1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 
-    return $objPHPExcel;
+  return $objPHPExcel;
 }
 
 /**
@@ -2300,10 +1628,10 @@ function createExcelFile($header, $formatExcel = array()) {
  * @param $color
  */
 function cellColor($objPHPExcel, $cells, $color) {
-    $objPHPExcel->getActiveSheet()->getStyle($cells)->getFill()
-        ->applyFromArray(array('type' => PHPExcel_Style_Fill::FILL_SOLID,
-            'startcolor' => array('rgb' => $color)
-        ));
+  $objPHPExcel->getActiveSheet()->getStyle($cells)->getFill()
+  ->applyFromArray(array('type' => PHPExcel_Style_Fill::FILL_SOLID,
+    'startcolor' => array('rgb' => $color)
+    ));
 }
 
 
@@ -2313,44 +1641,44 @@ function cellColor($objPHPExcel, $cells, $color) {
  */
 function downloadExcelFile($objPHPExcel, $fileName = 'report.xls') {
 
-    $styleArray = array(
-        'borders' => array(
-            'allborders' => array(
-                'style' => PHPExcel_Style_Border::BORDER_THIN,
-                'color' => array('rgb' => '333333')
-            )
+  $styleArray = array(
+    'borders' => array(
+      'allborders' => array(
+        'style' => PHPExcel_Style_Border::BORDER_THIN,
+        'color' => array('rgb' => '333333')
         )
+      )
     );
 
-    $objPHPExcel->getActiveSheet()->getStyle(
-        'A1:' .
-        $objPHPExcel->getActiveSheet()->getHighestColumn() .
-        $objPHPExcel->getActiveSheet()->getHighestRow()
+  $objPHPExcel->getActiveSheet()->getStyle(
+    'A1:' .
+    $objPHPExcel->getActiveSheet()->getHighestColumn() .
+    $objPHPExcel->getActiveSheet()->getHighestRow()
     )->applyFromArray($styleArray);
 
     // Rename worksheet
-    $objPHPExcel->getActiveSheet()->setTitle('Report');
+  $objPHPExcel->getActiveSheet()->setTitle('Report');
 
     // Set active sheet index to the first sheet, so Excel opens this as the first sheet
-    $objPHPExcel->setActiveSheetIndex(0);
+  $objPHPExcel->setActiveSheetIndex(0);
 
     // Download file
-    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment;filename="'.$fileName.'"');
-    header('Cache-Control: max-age=0');
+  header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+  header('Content-Disposition: attachment;filename="'.$fileName.'"');
+  header('Cache-Control: max-age=0');
 
     // Do your stuff here
-    $writer = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+  $writer = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
     // This line will force the file to download
-    $writer->save('php://output');
-    exit();
+  $writer->save('php://output');
+  exit();
 }
 
 function __export_to_excel ($data, $name ='') {
   $_headers = array(
-  'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
-  ,'AA','AB','AC','AD','AE','AF','AG','AH','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
-  );
+    'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
+    ,'AA','AB','AC','AD','AE','AF','AG','AH','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
+    );
   $headers = $data['headers'];
   $arrHeaders = array();
   foreach($headers as $key=>$value) {

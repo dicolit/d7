@@ -5,7 +5,8 @@
 
 }
 .row.client-list {
-
+  max-width: 660px;
+  margin: auto;
 }
 
 .row.client-list .client-item {
