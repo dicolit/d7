@@ -83,7 +83,7 @@
 
 
 
-    <ul id="main-menu">
+    <ul id="main-menu" class="">
       <?php foreach($main_menu as $menu):?>
       <li>
         <?php print l($menu['title'],$menu['href']);?>
@@ -111,6 +111,34 @@
 
 <div id="footer">
   <div class="container">
-    Footer
+    <div class="social-links">
+
+      <a href="#" class="fb">
+        <img src="http://ghp.com.vn/sites/all/themes/ghp2014/img/social/fb.jpg" alt="Facebook">
+      </a>
+
+      <a href="#" class="gg">
+        <img src="http://ghp.com.vn/sites/all/themes/ghp2014/img/social/gg.jpg" alt="Google">
+      </a>
+
+      <a href="#" class="yt">
+        <img src="http://ghp.com.vn/sites/all/themes/ghp2014/img/social/yt.jpg" alt="Youtube">
+      </a>
+
+      <a href="#" class="pdf">
+        <img src="http://ghp.com.vn/sites/all/themes/ghp2014/img/social/fb.jpg" alt="PDF">
+      </a>
+
+    </div>
+    <div class="footer-content">
+      HCMC - Rep.office: 118/11 Tran Quang Dieu str. | Ward 14 | Dist 3
+      <br>
+      Tell: 08. 6292 5369 / 6292 5370  - Fax: 08. 6292 5370
+      <br>
+      A member of Gia Hoang Group
+      <br><br>
+
+      Copyright © GHP
+    </div>
   </div>
 </div>
