@@ -29,7 +29,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #header ul#main-menu {
   text-align: center;
-  padding: 0;
+  padding: 10px;
   margin: 0;
   font-family: "UTM";
 }
@@ -83,4 +83,19 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0px 0px 20px;
   color: #979797;
   font-size: 11px;
+}
+
+
+#btt {
+    background: none repeat scroll #222222;
+    opacity: 0.8;
+    border: 1px solid #333333;
+    border-radius: 2px;
+    bottom: 21px;
+    cursor: pointer;
+    padding: 8px 15px;
+    position: fixed;
+    right: 20px;
+    z-index: 50;
+    color:#eee;
 }

@@ -32,4 +32,24 @@ $(document).ready(function(){
 
 
   })();
+
+
+
+  /**
+   * Back To Top
+   */
+  ( function() {
+      jQuery('#btt').fadeOut();
+      jQuery(window).scroll(function() {
+          if(jQuery(this).scrollTop() != 0) {
+              jQuery('#btt').fadeIn();
+          } else {
+              jQuery('#btt').fadeOut();
+          }
+      });
+
+      jQuery('#btt').click(function() {
+          jQuery('body,html').animate({scrollTop:0},800);
+      });
+  })();
 });
