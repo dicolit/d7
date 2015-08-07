@@ -12,7 +12,7 @@ stylesheets[all][] = css/main.css
 ;scripts[] = js/jquery.min.js
 ;scripts[] = scripts/vendor.js
 ;scripts[] = scripts/plugins.js
-;scripts[] = scripts/main.js
+scripts[] = js/main.js
 
 ;regions[header] = Header
 ;regions[content] = Content

@@ -54,6 +54,21 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom:2px solid #eee;
 }
 
+
+#header.header-fixed {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: #2e2e2e;
+}
+
+#header.header-fixed .top-logo {
+  display: none;
+}
+
+
 #footer {
   background-color: #2e2e2e;
 }

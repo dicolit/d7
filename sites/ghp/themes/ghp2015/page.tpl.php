@@ -83,7 +83,7 @@
 
 
 
-    <ul id="main-menu" class="">
+    <ul id="main-menu" class="fixed-on">
       <?php foreach($main_menu as $menu):?>
       <li>
         <?php print l($menu['title'],$menu['href']);?>
